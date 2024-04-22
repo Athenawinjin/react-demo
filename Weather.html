@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>元件應用-天氣預報</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="./javascripts/vendor.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="bg-lighter">
+    <div class="container main my-5">
+        <div class="row">
+            <main class="col post">
+                <div class="mb-4">
+                    <h1 class="mt-0 text-muted">天氣預報</h1>
+                </div>
+
+                <div id="root"></div>
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+                <script type="text/babel">
+                    // 資料來源：https://data.gov.tw/dataset/6069
+                    // Wx(天氣現象)、MaxT(最高溫度)、MinT(最低溫度)、CI(舒適度)、PoP(降雨機率)
+                    // 天氣圖示：https://www.cwa.gov.tw/V8/C/K/Weather_Icon.html
+                    // 因為氣象圖示相當多，所以本範例中僅採用已下載天氣資料為主，其餘圖示同學可至上方氣象局網站下載
+
+                    // Axios 是一個用於發送 HTTP 請求的 JavaScript 庫，在瀏覽器端和伺服器端都可以使用，
+                    // 開發者可以輕鬆地向伺服器發送各種類型的 HTTP 請求，例如 GET、POST、PUT 和 DELETE。
+                    // Axios提供了簡潔的 API、異步操作、取消請求、攔截器功能和跨瀏覽器支援等特點，
+                    // 使開發者能夠更輕鬆地進行網路請求的處理和管理。 
+                    // axios是一種HTTP的請求工具
+                    // axios是一個套件可以用來簡化XMLHttpRequest的一個套件
+
+                    (async () => {
+                        const data = await axios.get('./F-C0032-001.json');
+                        const { location } = data.data.cwbopendata.dataset;
+                        const options = { hour: 'numeric', minute: 'numeric' }
+                        console.log(location);
+                        const App = () => {
+                            // 建立日期時間元件
+                            const Time = ({ time }) => {
+                                return <>
+                                    {/*日期*/}
+                                    <div className="h4 my-2">
+                                        {/*取得日期中的日*/}
+                                        {new Date(time.startTime).toLocaleString(undefined, {
+                                            day: 'numeric'
+                                        })}
+                                    </div>
+
+                                    {/*取得時間*/}
+                                    {/*開始時間*/}
+                                    {new Date(time.startTime).toLocaleString(undefined, {
+                                        hour: "numeric",
+                                        minute: "numeric"
+                                    })}
+                                    <br />
+                                    ~<br />
+                                    {/*結束時間*/}
+                                    {new Date(time.endTime).toLocaleString(undefined, {
+                                        hour: "numeric",
+                                        minute: "numeric"
+                                    })}
+                                    <br />
+                                </>
+                            }
+
+                            // 建立天氣圖元件
+                            const WeatherWx = ({ time }) => {
+                                return <>
+                                    {/*取得天氣圖:time.parameter.parameterName*/}
+                                    <img src={`./weatherIcon/${time.parameter.parameterName}.svg`} alt={time.parameter.parameterName} />
+                                    <div className="mt-2">{time.parameter.parameterName}</div>
+                                </>
+                            }
+
+                            // 建立降雨率元件
+                            const WeatherPoP = ({ city, time, index }) => {
+                                return <>
+                                    <div className="mt-2">
+                                        <i className="bi bi-umbrella-fill">
+                                            {city.weatherElement[4].time[index].parameter.parameterName}%
+                                        </i>
+                                    </div>
+                                </>
+                            }
+
+                            // 建立卡片元件
+                            const Card = ({ city }) => {
+                                return <>
+                                    <div className="card text-center">
+                                        {/*卡片頭*/}
+                                        <div className="card-header">
+                                            <div className="h4 my-0">{city.locationName}</div>
+                                        </div>
+                                        {/*卡片body*/}
+                                        <div className="card-body">
+                                            <div className="row row-cols-3">
+                                                {/*取得天氣概況Wx*/}
+                                                {
+                                                    city.weatherElement[0].time.map((time, index) => {
+                                                        return (<div className="col" key={index}>
+                                                            {/*呼叫Time元件*/}
+                                                            <Time time={time} />
+
+                                                            {/*取得天氣圖:time.parameter.parameterName*/}
+                                                            <WeatherWx time={time} />
+
+                                                            {/*取得降雨率PoP=>city.weatherElement[4]*/}
+                                                            <WeatherPoP city={city} time={time} index={index} />
+                                                        </div>)
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            }                            
+
+                            return (
+                                <>
+                                    <h2 className="my-3">三十六小時天氣預報</h2>
+                                    <div className="row row-cols-2 g-4">
+                                        {/*取得天氣資料*/}
+                                        {location.map((city) => {
+                                            return (
+                                                <div className="col" key={city.locationName}>
+                                                    {/*卡片*/}
+                                                    <Card city={city} />
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </>
+                            );
+                        };
+
+                        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+                    })();
+                </script>
+            </main>
+        </div>
+    </div>
+    <link rel="stylesheet" href="./stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</body>
+
+</html>

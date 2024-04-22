@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.item{
+    float: left;
+    position: relative;
+}
+.item img{
+    width:100%;
+    /*取消圖片下方的空白列*/
+    vertical-align: bottom; 
+}
+/* 指定第一個item寬度 */
+.item:first-child{
+    width: 50%;
+}
+/* 第一個item之後的寬度 */
+.item:first-child~.item{
+    width: 25%;
+}
+/* 文字 */
+.item .txt{
+    /* opacity: .5; */
+    position: absolute;
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: scale(0);
+    transition: all .5s;
+}
+.item:hover .txt{
+    transform: scale(1);
+    background-color: rgba(0,0,0,.3);
+}
+
+
