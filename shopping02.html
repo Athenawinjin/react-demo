@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送貨及付款方式選擇</title>
+    <style>
+        .block-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .left-block,
+        .right-block {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .left-block {
+            width: 500px;
+            margin-right: 10px;
+        }
+
+        .right-block {
+            width: 500px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .delivery-location,
+        .delivery-method,
+        .payment-method {
+            margin-bottom: 20px;
+        }
+
+        .reminder {
+            font-size: 14px;
+            color: gray;
+        }
+
+        select {
+            width: 100%;
+            height: 38px;
+            padding: 5px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        .order-info {
+            margin-bottom: 20px;
+        }
+
+        .checkout-button button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-button button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+        .left-block02 {
+            display: flex;
+            align-items: left;
+            justify-content: left;
+            border: 1px solid #ccc;
+            width: 1080px;
+            margin-bottom: 20px;
+        }
+
+        .left-block02 .tag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tit {
+            background-color: #f7e5e5;
+            border: 1px solid #ccc;
+            width: 538px;
+            height: 47px;
+            margin-left: -20px;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .tit h2 {
+            margin-top: 10px;
+            margin-left: 20px;
+            color: #522932;
+        }
+
+        .tit02 {
+            background-color: #f7e5e5;
+            border: 1px solid #ccc;
+            width: 538px;
+            height: 47px;
+            margin-left: -20px;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .tit02 h2 {
+            margin-top: 10px;
+            margin-left: 20px;
+            color: #522932;
+        }
+
+        .input-box {
+            margin-top: 10px;
+            width: 490px;
+            height: 30px;
+        }
+
+        .address-input {
+            margin-top: 10px;
+            width: 490px;
+            height: 30px;
+        }
+
+        .expandable-block {
+            width: 1050px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .expandable-block .title {
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .expandable-block .title .arrow::after {
+            content: '\25BE';
+            font-size: 20px;
+        }
+
+        .expandable-block .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            border-top: 1px solid #ccc;
+        }
+
+        .expandable-block.open .title .arrow::after {
+            content: '\25B4';
+        }
+
+        .expandable-block.open .content {
+            max-height: 900px;
+        }
+
+        /* ................................................. */
+        /* CSS 样式 */
+        .container {
+            display: flex;
+            flex-direction: column;
+            /* border: 1px solid #ccc; */
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+            margin-right: 10px;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-left: -5px;
+        }
+
+        .price {
+            font-size: 18px;
+            margin-left: 40px;
+        }
+
+        /* .......流程步驟 */
+        .step {
+            width: 350px;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: 99px;
+            margin-left: 100px;
+            background-color: #ccc;
+        }
+
+        .step02 {
+            width: 350px;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: 99px;
+            background: conic-gradient(at left bottom, #f1e1e1, #f5f1f4, #c3dc99);
+            box-shadow: 0px 10px 10px -5px rgb(236, 208, 208);
+        }
+
+        .step03 {
+            width: 350px;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: 99px;
+            margin-right: 80px;
+            background-color: #ccc;
+        }
+
+        .step,
+        .step03 p {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .step02 p {
+            color: #522932;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .pay {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .input-box{
+            border-radius: 10px;
+        }
+
+        .add{
+            margin: 20px 0 ;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .add a{
+            text-decoration: none;
+            width: 500px;
+            height: 40px;
+            border: 2px solid #BE9798;
+            color:#522932 ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 99px;
+            font-size: 20px;
+        }
+        .add a:hover{
+            text-decoration: none;
+            width: 500px;
+            height: 40px;
+            background-color: #BE9798;
+            color: #ffffff;
+            border-radius: 99px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pay">
+        <div class="step03">
+            <img src="./images/shopping01/11.png" alt="">
+            <p>確認訂單明細</p>
+        </div>
+        <div class="step02">
+            <img src="./images/shopping01/10.png" alt="">
+            <p>付款與個資填寫</p>
+        </div>
+        <div class="step">
+            <img src="./images/shopping01/12.png" alt="">
+            <p>完成購買</p>
+        </div>
+    </div>
+    <div class="expandable-block" onclick="toggleExpandable()">
+        <div class="title">
+            <span>購物車(合計：NT$150)</span>
+            <span class="arrow"></span>
+        </div>
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="product-info">商品資料</div>
+                    <div class="discount">商品標題</div>
+                    <div class="unit-price">單件價格</div>
+                    <div class="quantity">數量</div>
+                    <div class="subtotal">小計</div>
+                </div>
+                <div class="row">
+                    <div class="product-image"></div>
+                    <div class="product-title">玫瑰檸檬茶</div>
+                    <div class="price">NT$210</div>
+                    <div class="quantity">1</div>
+                    <div class="subtotal">NT$210</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-container">
+        <div class="left-block">
+            <div class="tit">
+                <h2>顧客資料</h2>
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">顧客名稱：<br /></label>
+                <input type="text" class="input-box">
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">電子信箱：<br /></label>
+                <input type="text" class="input-box">
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">手機號碼：<br /></label>
+                <input type="text" class="input-box">
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">生日日期：<br /></label>
+                <input type="date" class="input-box">
+            </div>
+        </div>
+        <div class="right-block">
+            <div class="tit02">
+                <h2>送貨資料</h2>
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">收件人名稱：<br /></label>
+                <input type="text" class="input-box">
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">手機號碼：<br /></label>
+                <input type="text" class="input-box">
+            </div>
+            <div class="delivery-location">
+                <label for="delivery-location">選擇門市：<br /></label>
+                <input type="text" class="input-box"><button>搜尋門市</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-container">
+        <div class="left-block">
+            <div class="tit">
+                <h2>訂單備註</h2>
+            </div>
+            <textarea class="input-box" style="resize: vertical;"></textarea>
+        </div>
+        <div class="right-block">
+            <div class="tit02">
+                <h2>訂單資訊</h2>
+            </div>
+            <div class="delivery-location">
+                <p>玫瑰檸檬茶x1</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-container">
+        <div class="left-block">
+            <div class="tit">
+                <h2>付款資料</h2>
+                <p>合計: NT$210</p>
+            </div>
+            <p>已選擇的付款方式: 7-11 貨到付款</p>
+        </div>
+        <div class="right-block">
+            <div class="tit02">
+                <h2>索取發票</h2>
+            </div>
+            <div>發票類型：
+                <select class="select-box" id="invoice-type">
+                    <option>雲端發票</option>
+                    <option>捐贈發票</option>
+                    <option>公司戶發票</option>
+                    <option>二聯式紙本</option>
+                </select>
+            </div>
+            <!-- 根据选择的发票类型显示相应内容 -->
+            <div id="invoice-info"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleExpandable() {
+            var block = document.querySelector('.expandable-block');
+            block.classList.toggle('open');
+        }
+
+        // JavaScript 函数：根据选择的发票类型显示相应内容
+        function showInvoiceInfo() {
+            var invoiceType = document.querySelector(' #invoice-type').value;
+            var invoiceInfoDiv = document.getElementById('invoice-info');
+            invoiceInfoDiv.innerHTML = '';
+
+            if (invoiceType === '雲端發票') {
+                invoiceInfoDiv.innerHTML = '載具類型：<select class="select-box" id="carrier-type" onchange="showCarrierInput()"><option>會員載具</option><option>手機條碼</option><option>自然人憑證</option></select>';
+                invoiceInfoDiv.innerHTML += '<div id="carrier-input"></div>';
+            } else if (invoiceType === '公司戶發票') {
+                invoiceInfoDiv.innerHTML = '發票抬頭：<input type="text" class="invoice-input"><br>';
+                invoiceInfoDiv.innerHTML += '統一編號：<input type="text" class="invoice-input"><br>';
+                invoiceInfoDiv.innerHTML += '發票寄送地址：<br>城市/縣：<select class="address-select"><option>選項1</option><option>選項2</option></select> 地區：<select class="address-select"><option>選項1</option><option>選項2</option></select><br>';
+                invoiceInfoDiv.innerHTML += '地址：<input type="text" class="address-input">';
+            } else if (invoiceType === '捐贈發票') {
+                invoiceInfoDiv.innerHTML = '捐贈單位：<input type="text" class="input-box">';
+            } else if (invoiceType === '二聯式紙本') {
+                invoiceInfoDiv.innerHTML = '發票寄送地址：<br>城市/縣：<select class="address-select"><option>選項1</option><option>選項2</option></select> 地區：<select class="address-select"><option>選項1</option><option>選項2</option></select><br>';
+                invoiceInfoDiv.innerHTML += '地址：<br/><input type="text" class="address-input">';
+            }
+        }
+
+        function showCarrierInput() {
+            var carrierType = document.querySelector('#carrier-type').value;
+            var carrierInputDiv = document.getElementById('carrier-input');
+            carrierInputDiv.innerHTML = '';
+
+            if (carrierType === '手機條碼' || carrierType === '自然人憑證') {
+                carrierInputDiv.innerHTML = '載具號碼：<input type="text" class="invoice-input">';
+            }
+        }
+
+        // 执行函数以初始化
+        showInvoiceInfo();
+
+        // 基于发票类型的选择，显示相应的发票内容
+        document.querySelector('#invoice-type').addEventListener('change', showInvoiceInfo);
+    </script>
+
+    <div  class="add">
+        <a href="">送出訂單</a>
+    </div>
+</body>
+
+</html>
