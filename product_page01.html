@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>草莓綜合果乾</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+}
+
+header nav {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #555;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-images {
+    width: 40%;
+}
+
+.main-image {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.thumbnail-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail-images img {
+    width: 80px; /* 设置缩略图的宽度，可以根据需要调整 */
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.product-details {
+    width: 55%;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.rating {
+    font-size: 16px;
+    color: #f0ad4e;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 20px;
+    color: #d9534f;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.selection p,
+.quantity p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.options {
+    display: flex;
+    gap: 10px;
+}
+
+.options button {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.quantity-select {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-select button {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.quantity-select input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    background-color: #f0ad4e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.add-to-cart:hover {
+    background-color: #ec971f;
+}
+
+.product-tabs {
+    margin-top: 20px;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tab-buttons button {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+}
+
+.tab-buttons button.active {
+    background-color: #d9534f;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.recommendations {
+    margin-top: 40px;
+}
+
+.recommendation-items {
+    display: flex;
+    gap: 20px;
+}
+
+.recommendation-item {
+    width: 45%;
+}
+
+.recommendation-item img {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.recommendation-item p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.recommendation-item .price {
+    font-size: 18px;
+    color: #d9534f;
+}
+
+.recommendation-item .original-price {
+    font-size: 14px;
+    color: #888;
+    text-decoration: line-through;
+}
+
+/* 添加媒体查询以实现响应式布局 */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .product {
+        flex-direction: column; /* 垂直排列 */
+    }
+
+    .product-images,
+    .product-details {
+        width: 100%;
+    }
+
+    .thumbnail-images {
+        justify-content: center;
+    }
+
+    .recommendation-items {
+        flex-direction: column;
+    }
+
+    .recommendation-item {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="#">首頁</a> &gt; <a href="#">草莓控必備</a> &gt; 草莓綜合果乾水
+            </nav>
+        </header>
+        <div class="product">
+            <div class="product-images">
+                <img src="main-image.jpg" alt="草莓綜合果乾" class="main-image" id="main-image">
+                <div class="thumbnail-images">
+                    <img src="thumbnail1.jpg" alt="Thumbnail 1" class="thumbnail" data-full="main-image1.jpg">
+                    <img src="thumbnail2.jpg" alt="Thumbnail 2" class="thumbnail" data-full="main-image2.jpg">
+                    <img src="thumbnail3.jpg" alt="Thumbnail 3" class="thumbnail" data-full="main-image3.jpg">
+                    <img src="thumbnail4.jpg" alt="Thumbnail 4" class="thumbnail" data-full="main-image4.jpg">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1>草莓綜合果乾水</h1>
+                <p class="rating">★★★★★ 234 評論</p>
+                <p class="price">$179</p>
+                <p class="description">
+                    小草作 草莓綜合果乾水<br>
+                    苗栗草莓 x 屏東金鑽鳳梨 x 彰化茉莉<br><br>
+                    草莓控必備。小草作果乾水全新風味！以苗栗無毒種植草莓為主角的果乾水，搭配鳳梨酸甜與茉莉清香，調和出獨具香氣與酸甜口感。日常補水，每一口都有天然的滋味，怎麼喝都無負擔，輕鬆補足每日所需水份。<br><br>
+                    台灣果乾水，補水小時光，讓水變好喝<br>
+                    ✓ 100% 台灣水果花草，專利常溫乾燥，封存鮮果營養<br>
+                    ✓ 天然果味和清爽花草香，不知不覺已喝水<br>
+                    ✓ 無咖啡因、無添加糖、無人工香料
+                </p>
+                <div class="selection">
+                    <p>選擇組合內容:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            玫瑰+雪梨(潤肺止咳，抗氧化護膚，補充礦物質)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+檸檬(調節情緒、改善皮膚狀況)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+山楂(清熱解毒、調節消化)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+蘋果(清熱解毒、調節血糖)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+草莓(保護心血管、皮膚健康)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+葡萄(舒緩情緒、保護心血管)
+                        </label>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <p>數量:</p>
+                    <div class="quantity-select">
+                        <button class="minus">-</button>
+                        <input type="text" value="1" readonly>
+                        <button class="plus">+</button>
+                    </div>
+                    
+                </div>
+                <button class="add-to-cart">加入購物車</button>
+            </div>
+        </div>
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="active" data-tab="details">商品詳情</button>
+                <button data-tab="ingredients">產品成分</button>
+                <button data-tab="preparation">沖泡方式</button>
+                <button data-tab="packaging">產品包裝</button>
+                <button data-tab="shipping">付款與運送</button>
+                <button data-tab="reviews">評論 (234)</button>
+            </div>
+            <div class="tab-content active" id="details">
+                <p>
+                    小草作草莓綜合果乾水<br>
+                    草莓控必備。小草作果乾水全新風味！以苗栗無毒種植草莓為主角的果乾水，搭配鳳梨酸甜與茉莉清香，調和出獨具香氣與酸甜口感。日常補水，每一口都有天然的滋味，怎麼喝都無負擔，輕鬆補足每日所需水份。<br><br>
+                    本產品每盒含3包草莓綜合果乾水，原料為苗栗草莓、屏東金鑽鳳梨、彰化茉莉。
+                </p>
+            </div>
+            <div class="tab-content" id="ingredients">
+                <p>產品成分內容...</p>
+            </div>
+            <div class="tab-content" id="preparation">
+                <p>沖泡方式內容...</p>
+            </div>
+            <div class="tab-content" id="packaging">
+                <p>產品包裝內容...</p>
+            </div>
+            <div class="tab-content" id="shipping">
+                <p>付款與運送內容...</p>
+            </div>
+            <div class="tab-content" id="reviews">
+                <p>評論內容...</p>
+            </div>
+        </div>
+        <div class="recommendations">
+            <h2>推薦商品</h2>
+            <div class="recommendation-items">
+                <div class="recommendation-item">
+                    <img src="recommendation1.jpg" alt="推薦商品1">
+                    <p>[30款新風味任選] 小草作 自選分享組</p>
+                    <p class="price">$870 <span class="original-price">$895</span></p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="recommendation2.jpg" alt="推薦商品2">
+                    <p>[補水小幫手] 台灣果乾水綜合體驗組</p>
+                    <p class="price">$590</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const thumbnails = document.querySelectorAll(".thumbnail");
+    const mainImage = document.getElementById("main-image");
+
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener("click", function() {
+            const fullImage = this.getAttribute("data-full");
+            mainImage.src = fullImage;
+        });
+    });
+
+    const tabButtons = document.querySelectorAll(".tab-buttons button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const tab = this.getAttribute("data-tab");
+
+            tabButtons.forEach(btn => btn.classList.remove("active"));
+            tabContents.forEach(content => content.classList.remove("active"));
+
+            this.classList.add("active");
+            document.getElementById(tab).classList.add("active");
+        });
+    });
+
+    // 处理数量选择
+    const quantityInput = document.querySelector(".quantity-select input");
+    const quantityPlus = document.querySelector(".quantity-select .plus");
+    const quantityMinus = document.querySelector(".quantity-select .minus");
+
+    quantityPlus.addEventListener("click", function() {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    });
+
+    quantityMinus.addEventListener("click", function() {
+        if (quantityInput.value > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+    });
+});
+
+
+    </script>
+</body>
+</html>
