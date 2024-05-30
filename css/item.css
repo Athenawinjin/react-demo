@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Noto+Serif+TC&display=swap');
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image-containerb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-containerb img {
+    width: 250px;
+    height: 250px;
+}
+
+.gallery-image {
+    width: 150px;
+    height: auto;
+    margin: 10px;
+    transition: transform 0.3s, filter 0.3s;
+    margin-left: 60px;
+}
+
+.gallery-image.active {
+    filter: brightness(100%);
+}
+
+.gallery-image:hover {
+    transform: scale(1.1);
+}
+
+.article {
+    text-align: center;
+    font-size: 16px;
+    /* 调整文字大小 */
+}
+
+.image-title {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-5px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.5s ease;
+    width: 850px;
+}
+
+#article-text {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 22px;
+}
+
+.tit01 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tit01 h2 {
+    margin-top: 50px;
+    font-size: 40px;
+    color: #816068;
+    font-family: "Noto Serif TC", serif;
+}
+
+.tit01 p {
+    margin-top: 30px;
+    font-size: 30px;
+    color: #834856;
+    font-family: "Noto Serif TC", serif;
+}
+
+#article-text {
+    width: 850px;
+}
