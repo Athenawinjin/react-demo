@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        /* Header */
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #684647;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo img {
+            height: 40px;
+            /* Adjust as needed */
+        }
+
+        header .menu-icon,
+        header .cart-icon {
+            display: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        header .header-items {
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        header .header-items a {
+            color: #ffe0e1;
+            font-size: 18px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* Cart and member icons */
+        .cart {
+            position: relative;
+            margin-right: 40px;
+        }
+
+        .cart img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .cart .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #FF0000;
+            color: #FFFFFF;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+        /* Mobile menu */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px;
+            }
+
+            header .header-items {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding-top: 10px;
+            }
+
+            header .header-items a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: left;
+                background-color: #684647;
+                color: #ffe0e1;
+                border-top: 1px solid #444;
+            }
+
+            header .menu-icon,
+            header .cart-icon {
+                display: block;
+            }
+
+            header .menu-icon {
+                order: 2;
+            }
+
+            header .cart {
+                order: 3;
+            }
+
+            .menu-icon.active+.header-items {
+                display: flex;
+            }
+
+            /* Lightbox menu */
+            .lightbox-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                /* Semi-transparent black background */
+                z-index: 1001;
+                /* Ensure it's above header */
+                overflow-y: auto;
+                /* Enable scrolling if menu content is too long */
+            }
+
+            .lightbox-menu-content {
+                background-color: #684647;
+                padding: 20px;
+                width: 80%;
+                margin: 100px auto;
+                /* Center menu vertically */
+                border-radius: 10px;
+                position: relative;
+            }
+
+            .lightbox-menu-content a {
+                display: block;
+                padding: 10px 0;
+                color: #ffe0e1;
+                text-decoration: none;
+                border-bottom: 1px solid #444;
+            }
+
+            .lightbox-menu-content a:last-child {
+                border-bottom: none;
+            }
+
+            .close-btnn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                color: #ffffff;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+
+
+        /* .............footer..................... */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer {
+            background-color: #684647;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-left img {
+            width: 200px;
+            /* 调整logo的宽度为50px */
+        }
+
+        .footer-center {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .footer-section {
+            margin: 10px;
+            text-align: center;
+            flex: 1 1 100%;
+            /* 确保在小屏幕上占据整行 */
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin: 5px 0;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        @media (min-width: 600px) {
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .footer-left,
+            .footer-center {
+                flex: 1;
+            }
+
+            .footer-center {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .footer-section {
+                margin: 0 10px;
+                /* 縮小間距 */
+                text-align: left;
+                flex: 1 1 auto;
+                /* 在大屏幕上每个section自动调整宽度 */
+            }
+        }
+
+        /* header */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .cont {
+            width: 90%;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .head nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .head nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .head nav ul li {
+            margin-right: 20px;
+        }
+
+        .head nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .head nav .logout {
+            text-decoration: none;
+            color: #333;
+        }
+
+        main {
+            padding: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tabs div {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            cursor: pointer;
+        }
+
+        .tabs .active {
+            background-color: #fff;
+            border-top: 3px solid #f26522;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .tab-content h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .balance-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .balance-info h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .balance-info p {
+            font-size: 36px;
+            font-weight: bold;
+            color: #f26522;
+        }
+
+        .no-record {
+            text-align: center;
+            padding: 40px 0;
+            color: #999;
+        }
+
+        .no-record img {
+            width: 50px;
+            margin-bottom: 20px;
+        }
+
+        .no-record p {
+            margin-bottom: 20px;
+        }
+
+        .upgrade-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f26522;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const Header = () => {
+            const openLightboxMenu = () => {
+                document.getElementById('lightboxMenu').style.display = 'block';
+            };
+
+            const closeLightboxMenu = () => {
+                document.getElementById('lightboxMenu').style.display = 'none';
+            };
+
+            return (
+                <>
+                    <header>
+                        <div className="logo"><img src="./images/11.png" alt="Logo" /></div>
+                        <img src="./images/menu-icon.png" alt="Menu" className="menu-icon" onClick={openLightboxMenu} />
+                        <div className="header-items">
+                            <a href="./product.html">商品列表</a>
+                            <a href="./account-loge.html">會員專區</a>
+                            <a href="./Q&A.html">常見Q&A</a>
+                            <a href="./news.html">最新消息</a>
+                        </div>
+                        <div className="cart">
+                            <img src="./images/10.png" alt="Cart Icon" />
+                            <div className="cart-count">0</div>
+                        </div>
+                    </header>
+
+                    <div className="lightbox-menu" id="lightboxMenu">
+                        <div className="lightbox-menu-content">
+                            <span className="close-btnn" onClick={closeLightboxMenu} style={{ top: '5px', right: '5px' }}>&times;</span>
+                            <a href="./product.html">商品列表</a>
+                            <a href="#">會員招募</a>
+                            <a href="./qa.html">常見Q&A</a>
+                            <a href="./news.html">最新消息</a>
+                        </div>
+                    </div>
+                </>
+            );
+        };
+
+        const Navigation = () => {
+            return (
+                <div className="head">
+                    <nav>
+                        <ul>
+                            <li><a href="./member01.html">個人資訊</a></li>
+                            <li><a href="./member02.html">商店購物金</a></li>
+                            <li><a href="./member03.html">優惠券</a></li>
+                            <li><a href="./member04.html">訊息</a></li>
+                            <li><a href="./member05.html">訂單</a></li>
+                        </ul>
+                        <a href="#" className="logout">登出</a>
+                    </nav>
+                </div>
+            );
+        };
+
+
+
+        const TabContent = () => {
+            return (
+                <div className="tab-content">
+                    <div className="balance-info">
+                        <h2>購物金紀錄</h2>
+                        <div>
+                            <h3>現有購物金</h3>
+                            <p>0</p>
+                        </div>
+                    </div>
+
+                    <div className="no-record">
+                        <img src="shopping-bag-icon.png" alt="Shopping Bag" />
+                        <p>沒有任何記錄</p>
+                        <p>結帳累積購物金獲得更多優惠！</p>
+                        <a href="#" className="upgrade-button">馬上提昇</a>
+                    </div>
+                </div>
+            );
+        };
+
+        const Footer = () => {
+            return (
+                <footer className="footer">
+                    <div className="footer-left">
+                        <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo" />
+                    </div>
+                    <div className="footer-center">
+                        <div className="footer-section">
+                            <h3>關於茶韻花茶</h3>
+                            <ul>
+                                <li><a href="./story.html">品牌故事</a></li>
+                                <li><a href="#">從產地到手心</a></li>
+                                <li><a href="#">退款政策</a></li>
+                            </ul>
+                        </div>
+                        <div className="footer-section">
+                            <h3>客戶服務</h3>
+                            <ul>
+                                <li><a href="./Q&A.html">常見問答</a></li>
+                                <li><a href="#">聯絡我們</a></li>
+                            </ul>
+                        </div>
+                        <div className="footer-section">
+                            <h3>茶韻花語知識</h3>
+                            <ul>
+                                <li><a href="#">認識花茶</a></li>
+                            </ul>
+                        </div>
+                        <div className="footer-section">
+                            <h3>聯絡茶韻花語</h3>
+                            <ul>
+                                <li><a href="#">聯絡我們</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+
+        function App() {
+            return (
+                <div className="App">
+                    <Header />
+                    <div className="cont">
+                        <Navigation />
+                        <main>
+                            <TabContent />
+                        </main>
+                    </div>
+                    <Footer />
+                </div>
+            );
+        }
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
