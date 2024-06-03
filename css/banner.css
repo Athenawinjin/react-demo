@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Noto+Serif+TC&display=swap');
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Serif TC", serif;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -2px;
+}
+
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.banner-slide.active {
+  opacity: 1;
+}
+
+.banner-image,
+.banner-text {
+  width: 50%;
+  height: 100%;
+}
+
+.banner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 5%;
+  background-image: linear-gradient(to left, #9A6C6D, #f3d5dc);
+}
+
+.banner-text h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.banner-text p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.bttn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FFF7F5;
+  color: #9A6C6D;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 100px;
+}
+
+.bttn:hover {
+  background-color: #9A6C6D;
+  color: #FFF7F5;
+}
+
+.thumbnail-container {
+  position: absolute;
+  bottom: 2%;
+  left: 5%;
+  display: flex;
+  gap: 10px;
+  width: 50%;
+}
+
+.thumbnail {
+  width: 10px;
+  height: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.thumbnail-container img {
+  width: 20px;
+  height: 20px;
+}
+
+
+.thumbnail:hover,
+.thumbnail.active-thumbnail {
+  opacity: 1;
+}
+
+/* 手機版樣式 */
+@media (max-width: 768px) {
+  .banner-slide {
+    flex-direction: column;
+    height: 100%;
+  }
+
+
+  .banner-image,
+  .banner-text {
+    width: 100%;
+    height: 50%;
+  }
+
+  .banner-text {
+    width: 100%;
+    height: 800px;
+  }
+
+  .banner-text {
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin-top: -20px;
+  }
+
+  .banner-text h2 {
+    font-size: 2em;
+  }
+
+  .banner-text p {
+    font-size: 1em;
+  }
+
+  .thumbnail-container {
+    bottom: -2%;
+    width: 100%;
+  }
+
+  .thumbnail-container img {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* 區塊二-梅花茶 */
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  margin-top: -10px;
+  width: 100%;
+  background-image: linear-gradient(to left, #B29CA2, #8b6d74);
+}
+
+.text-section {
+  width: 40%;
+  z-index: 1;
+}
+
+.text-section h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #FFF7F5;
+  margin-left: 40px;
+}
+
+.text-section p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #FFF7F5;
+  font-size: 20px;
+  margin-left: 40px;
+}
+
+.bttn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #522932;
+  color: #522932;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  border-radius: 99px;
+  margin-left: 40px;
+}
+
+
+
+.image-section {
+  position: relative;
+  width: 60%;
+  height: 100%;
+}
+
+.image-section .image {
+  position: absolute;
+  border-radius: 10px;
+}
+
+.image-section .image1 {
+  top: 10%;
+  left: 5%;
+  width: 95%;
+  height: auto;
+}
+
+.image-section .image2 {
+  top: 25%;
+  right: 10%;
+  width: 40%;
+  height: auto;
+}
+
+.image-section .image3 {
+  bottom: 10%;
+  left: 20%;
+  width: 35%;
+  height: auto;
+}
+
+.image-section .image4 {
+  top: 60%;
+  right: 5%;
+  width: 30%;
+  height: auto;
+}
+
+.image-section .image5 {
+  top: 40%;
+  left: 40%;
+  width: 25%;
+  height: auto;
+}
+
+/* 手機版樣式 */
+@media (min-width: 320px) and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    margin-top: -2px;
+  }
+
+  .text-section {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .image-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .image-section .image {
+    position: static;
+    margin: 10px;
+    width: 45%;
+  }
+
+  .image-section .image1 {
+    width: 400px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1366px) {
+  .banner-container {
+    height: 70vh
+  }
+}

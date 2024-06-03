@@ -1,0 +1,208 @@
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #684647;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo img {
+            height: 40px;
+            /* Adjust as needed */
+        }
+
+        header .menu-icon,
+        header .cart-icon {
+            display: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        header .header-items {
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        header .header-items a {
+            color: #ffe0e1;
+            font-size: 18px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* Cart and member icons */
+        .cart {
+            position: relative;
+            margin-right: 40px;
+        }
+
+        .cart img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .cart .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #FF0000;
+            color: #FFFFFF;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+        /* Mobile menu */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px;
+            }
+
+            header .header-items {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding-top: 10px;
+            }
+
+            header .header-items a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: left;
+                background-color: #684647;
+                color: #ffe0e1;
+                border-top: 1px solid #444;
+            }
+
+            header .menu-icon,
+            header .cart-icon {
+                display: block;
+            }
+
+            header .menu-icon {
+                order: 2;
+            }
+
+            header .cart {
+                order: 3;
+            }
+
+            .menu-icon.active + .header-items {
+                display: flex;
+            }
+
+            /* Lightbox menu */
+            .lightbox-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+                z-index: 1001; /* Ensure it's above header */
+                overflow-y: auto; /* Enable scrolling if menu content is too long */
+            }
+
+            .lightbox-menu-content {
+                background-color: #684647;
+                padding: 20px;
+                width: 80%;
+                margin: 100px auto; /* Center menu vertically */
+                border-radius: 10px;
+                position: relative;
+            }
+
+            .lightbox-menu-content a {
+                display: block;
+                padding: 10px 0;
+                color: #ffe0e1;
+                text-decoration: none;
+                border-bottom: 1px solid #444;
+            }
+
+            .lightbox-menu-content a:last-child {
+                border-bottom: none;
+            }
+
+            .close-btnn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                color: #ffffff;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+
+
+/* .............footer..................... */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.footer {
+    background-color: #684647;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer-left img {
+    width: 200px; /* 调整logo的宽度为50px */
+}
+.footer-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+.footer-section {
+    margin: 10px;
+    text-align: center;
+    flex: 1 1 100%; /* 确保在小屏幕上占据整行 */
+}
+.footer-section h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #fff;
+}
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-section ul li {
+    margin: 5px 0;
+}
+.footer-section ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+@media (min-width: 600px) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .footer-left, .footer-center {
+        flex: 1;
+    }
+    .footer-center {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .footer-section {
+        margin: 0 10px; /* 縮小間距 */
+        text-align: left;
+        flex: 1 1 auto; /* 在大屏幕上每个section自动调整宽度 */
+    }
+}

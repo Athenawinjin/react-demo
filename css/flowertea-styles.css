@@ -1,0 +1,201 @@
+.carouselle {
+  position: relative;
+  width: 99vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -150px;
+}
+
+.carousel-innerle {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  width: 100%;
+}
+
+.carousel-itemle {
+  min-width: 20%;
+  /* 100 / 5 = 20, showing 5 cards at once */
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.carousel-itemle img {
+  width: 100%;
+  height: auto;
+  /* Adjust height as needed */
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.carousel-captionle {
+  border: 2px solid #9A6C6D;
+  color: #9A6C6D;
+  padding: 20px;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+
+.carousel-captionle h3 {
+  margin: 10px 0;
+}
+
+.carousel-captionle button {
+  border: 2px solid #f8caca;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+background-color:#f8caca ;
+color: #9A6C6D;
+}
+
+.carousel-captionle button:hover {
+background-color: #9A6C6D;
+  color: #f8caca;
+}
+
+.carousel-dotsle {
+  text-align: center;
+  position: absolute;
+  /* 調整此值以向上移動 */
+  bottom: -200px;
+  width: 100%;
+}
+
+
+.dotle {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dotle.active {
+  background-color: #717171;
+}
+
+/* Add a media query for tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  .carousel-itemle {
+      min-width: 33.33%;
+      /* Show three cards at once on tablets */
+  }
+
+  .carousel-itemle .image1{
+    width: 200px;
+  }
+}
+
+/* Add a media query for phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .carousel-itemle {
+      min-width: 100%;
+      /* Show one card at a time on phones */
+  }
+}
+
+@media (min-width: 375px){
+  .carousel-dotsle {
+    bottom: 20px;
+  }
+  .carousel-itemle .image1{
+    width: 200px;
+  }
+}
+    /* ............燈箱............. */
+.lightbox {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7);
+z-index: 9999;
+}
+
+.lightbox-content {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: conic-gradient(at left bottom, #f7cbcb, #dab5bd, #c3dc99);
+padding: 20px;
+border-radius: 5px;
+width: 800px;
+height: 750px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-content {
+    width: 300px;
+    height: 350px;
+    }
+}
+
+.lightbox-close {
+position: absolute;
+top: 5px;
+right: 75px;
+cursor: pointer;
+width: 750px;
+height: 50px;
+color: #522932;
+font-size: 40px;
+}
+
+.lightbox img {
+max-width: 100%;
+height: auto;
+}
+
+a {
+cursor: pointer;
+}
+
+.lightbox-content h2 {
+margin-top: 50px;
+color: #522932;
+font-size: 40px;
+font-family: "Noto Serif TC", serif;
+}
+
+.lightbox-content p {
+color: #522932;
+font-family: "Noto Serif TC", serif;
+}
+
+
+.tag {
+width: 150px;
+height: 40px;
+background-color: #f8e7e7;
+border-radius: 99px;
+margin-top: 20px;
+}
+
+.tag:hover {
+background-color: #d89f9f;
+}
+
+.tag a {
+color: #522932;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.tag a:hover {
+color: #f8e7e7;
+}
+
+/* ............燈箱............. */
