@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最新消息</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        /* banner */
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 60vh; /* Set container height to full viewport height */
+        }
+        .section {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            transition: flex 0.5s;
+        }
+        .section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .section:hover {
+            flex: 5;
+        }
+        .section:hover img {
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+        .overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+        .overlay img {
+            width: 100px;
+            height: 100px;
+        }
+        .overlay p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        /* banner */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav ul li a.active {
+            color: #d4a659;
+            border-bottom: 2px solid #d4a659;
+        }
+
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .news-item {
+            background-color: #fff;
+            width: 45%;
+            margin: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .news-item:hover {
+            background-color: #D79C9D;
+            color: #fff;
+        }
+
+        .date {
+            background-color: #D79C9D;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .news-item:hover .date {
+            background-color: #684647;
+        }
+
+        .date .day {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .date .month {
+            font-size: 16px;
+            color: #eee;
+        }
+
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+
+        .content img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .news-item:hover .content img {
+            transform: scale(1.1);
+        }
+
+        .text {
+            max-width: calc(100% - 170px);
+        }
+
+        .text a {
+            color: #684647;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .text a:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .news-item {
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .date {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #fff;
+            }
+
+            .content {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .content img {
+                width: 100%;
+                height: auto;
+                margin: 0 0 10px 0;
+            }
+
+            .text {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="./images/11.png" alt="Logo"></div>
+        <img src="./images/menu-icon.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+    
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+    
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+    
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <!-- banner -->
+    <div class="container">
+        <div class="section">
+            <img src="./images/area/11.png" alt="Fresh Fruit">
+            <div class="overlay">
+                <p>洋甘菊花茶</p>
+                <p>洋甘菊茶，盈盈清香。午後暇意，靜飲一杯，心隨花香，舒緩心緒。微醺間，品味歲月，清新淡雅，自在從容。</p>
+            </div>
+        </div>
+        <div class="section">
+            <img src="./images/area/13.png" alt="Tea Leaves">
+            <div class="overlay">
+                <p>梅花花茶</p>
+                <p>梅花茶香氣清新，滋味甘醇，有助提神醒腦、舒緩壓力，讓人放鬆心情，品味生活。</p>
+            </div>
+        </div>
+        <div class="section">
+            <img src="./images/area/12.png" alt="Tea Leaves">
+            <div class="overlay">
+                <p>金盞菊花茶</p>
+                <p>金盞菊舞金光，暖陽下，悠然飲茶。清香襲人，心靜如水，歲月靜好。一杯茶，一縷暖，淺嚐歲月柔情。</p>
+            </div>
+        </div>
+        <div class="section">
+            <img src="./images/area/14.png" alt="Tea Jelly">
+            <div class="overlay">
+                <p>玫瑰花茶</p>
+                <p>玫瑰花舞動，香氣盈懷。淺啜一口，芳香滿唇，心底漣漪，思緒飄散。愛意蔓延，歲月靜好，花開時節，幸福綿長。</p>
+            </div>
+        </div>
+        <div class="section">
+            <img src="./images/area/15.png" alt="Fresh Ingredients">
+            <div class="overlay">
+                <p>桃花花茶</p>
+                <p>桃花爛漫，茶香裊裊。唇齒輕啟，芬芳蔓延，心緒隨之，悠然舒展。春日暖陽，桃花如煙，一杯花茶，歲月如歌，美好如畫。</p>
+            </div>
+        </div>
+    </div>
+    <!-- banner -->
+    <div class="header">
+        <nav>
+            <ul>
+                <li><a href="#" data-filter="all" class="active">所有訊息</a></li>
+                <li><a href="#" data-filter="重要資訊">重要資訊</a></li>
+                <li><a href="#" data-filter="新品上市">新品上市</a></li>
+                <li><a href="#" data-filter="門市開幕">門市開幕</a></li>
+                <li><a href="#" data-filter="優惠活動">優惠活動</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="news-container">
+        <div class="news-item" data-category="新品上市">
+            <div class="date">
+                <span class="day">19</span>
+                <span class="month">JAN</span>
+            </div>
+            <div class="content">
+                <img src="./images/index/19.png" alt="News Image 1">
+                <div class="text">
+                    <h3>茶韻花語x新配方 桃花蜜桃茶!新上市~</h3>
+                    <p>[新品上市]</p>
+                    <p>茶韻清甜，香氣濃郁...</p>
+                    <a href="./news_art01.html">查看更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="news-item" data-category="新品上市">
+            <div class="date">
+                <span class="day">26</span>
+                <span class="month">OCT</span>
+            </div>
+            <div class="content">
+                <img src="./images/index/16.png" alt="News Image 2">
+                <div class="text">
+                    <h3>茶韻花語x新配方 洛神草莓檸檬茶!新上市~</h3>
+                    <p>[新品上市]</p>
+                    <p>洛神草莓茶口感清新怡人，酸甜交織，...</p>
+                    <a href="#">查看更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="news-item" data-category="優惠活動">
+            <div class="date">
+                <span class="day">08</span>
+                <span class="month">AUG</span>
+            </div>
+            <div class="content">
+                <img src="./images/17.png" alt="News Image 5">
+                <div class="text">
+                    <h3>茶韻花語x新配方 洛神金桔茶!促銷中~</h3>
+                    <p>[促銷推薦]</p>
+                    <p>洛神金桔茶口感清爽独特，洛神花的酸与金桔的清香完美结合，...</p>
+                    <a href="#">查看更多</a>
+                </div>
+            </div>
+        </div>
+        <!-- Add more news items here with appropriate data-category attributes -->
+        <div class="news-item" data-category="門市開幕">
+            <div class="date">
+                <span class="day">08</span>
+                <span class="month">AUG</span>
+            </div>
+            <div class="content">
+                <img src="./images/area/16.png" alt="News Image 5">
+                <div class="text">
+                    <h3>茶韻花語反詐騙聲明</h3>
+                    <p>[重要資訊]</p>
+                    <p>茶韻花語提醒消費者謹防詐騙...</p>
+                    <a href="#">查看更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterLinks = document.querySelectorAll('nav ul li a');
+            const newsItems = document.querySelectorAll('.news-item');
+
+            filterLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    filterLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+                    newsItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+<footer class="footer">
+    <div class="footer-left">
+        <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+    </div>
+    <div class="footer-center">
+        <div class="footer-section">
+            <h3>關於茶韻花茶</h3>
+            <ul>
+                <li><a href="#">品牌故事</a></li>
+                <li><a href="#">從產地到手心</a></li>
+                <li><a href="#">退款政策</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>客戶服務</h3>
+            <ul>
+                <li><a href="#">常見問答</a></li>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>茶韻花語知識</h3>
+            <ul>
+                <li><a href="#">認識花茶</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>聯絡茶韻花語</h3>
+            <ul>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頁籤內容顯示</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 100px auto;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #f8f8f8;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover,
+        .sidebar ul li.active {
+            background-color: #8C6F70;
+            color: #ddd;
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #BE9798;
+            border: 1px solid #ddd;
+            color: #f4f4f4;
+        }
+
+        .question-content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+
+        .question-content.active {
+            display: block;
+        }
+
+        .toggle-button {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><img src="./images/11.png" alt="Logo"></div>
+        <img src="./images/menu-icon.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+    
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+    
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+    
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li class="tab" data-target="section1">產品相關問題</li>
+                <li class="tab" data-target="section2">購物須知</li>
+                <li class="tab" data-target="section3">付款方式</li>
+                <li class="tab" data-target="section4">配送及出貨</li>
+                <li class="tab" data-target="section5">取消訂單/退換貨政策</li>
+                <li class="tab" data-target="section6">發票問題</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div id="section1" class="section">
+                <h2>產品相關問題</h2>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>花茶要怎麼選配呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        每一種花材都有它的功效及特性，詳情資訊均可透過，本網站最新消息及商品頁，查閱相關花材選搭，找尋適合茶品，舉例如下：<br /><br />
+                        1.薰衣草搭配溫潤的蒲公英、可以散發甜味的香蜂草，有助於釋放壓力與放鬆心情<br />
+                        2.茉莉搭配玫瑰，可以幫助新陳代謝與護膚美容<br />
+
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>花茶可以怎麼沖泡?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        取出包裝裡面一包茶包，以90至95度500c.c.溫熱水，沖泡15分鐘，浸泡時間不宜太短、過久或水溫過熱，會影響花材功效，一個茶包可沖泡1至3次。
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>商品可以保存多久呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        商品放置於陰涼處，可保存4個月。
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>孕婦可以飲用嗎?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        因為每個人體質不同，還是需要先取得醫生建議，經過評估後，再確認是否可飲用喔!
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>敏體質適合飲用嗎?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        如果確認飲用會有過敏反應，不建議飲用喔，因為過敏可能伴隨出疹、呼吸困難、血壓降低及休克反應或局部水腫問題，應謹慎小心喔!<br /><br />
+                        因此，建議在購買花茶前先取得醫生建議及了解自身情況，確認欲購買之款項花茶是否會造成過敏，才能喝的健康且安心喔!
+                    </div>
+                </div>
+            </div>
+            <div id="section2" class="section">
+                <h2>購買商品</h2>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>想要購買下單，要做甚麼呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        1.需要先註冊我們會員，在進行登入購買<br />
+                        2.官網下單前，商品下方都會做商品介紹及購物說明，可依照購買流程說明指示，完成購買<br />
+                        3.也可以透過此頁面查閱付款方式
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>我可以怎麼確認訂單成立呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        在您完成訂單後，會透過您註冊會員mail，寄發信件給您，也可登入會員專區，點選訂單查詢功能確認訂單資訊
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>訂單品項及數量選錯怎麼辦?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        若您尚未結帳，訂單還在購物車，可以進到購物車進行修改在結帳
+                        如果已經完成結帳，可以加入我們官方LINE，會由我們專人協助予您處理
+                    </div>
+                </div>
+            </div>
+            <div id="section3" class="section">
+                <h2>付款方式</h2>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>有哪些付款方式？</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        1.需要先註冊我們會員，在進行登入購買<br />
+                        2.官網下單前，商品下方都會做商品介紹及購物說明，可依照購買流程說明指示，完成購買
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>可以選擇貨到付款嗎?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        可以選擇貨到付款喔，可以選擇超商取貨方式進行付款
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>我要怎麼知道有付款成功呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        若確認付款成功，我們會以email方式通知您付款成功，如果您是使用信用卡付款也會收到發卡銀行之簡訊付款通知!<br /><br />
+                        也可登入會員專區，使用訂單查詢功能，若確認銀行端付款成功，訂當狀態會顯示付款成功
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>信用卡刷不過怎麼辦?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        請您留意刷卡後的授權失敗通知，或至官網LINE上聯繫我們，我們會協助確認您目前情況，提供處理方式
+                    </div>
+                </div>
+            </div>
+            <div id="section4" class="section">
+                <h2>配送及出貨</h2>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>運送方式有哪些呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        運送方式有2種，順風到家宅配、7-11/全家超商取貨。
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>如何收到商品嗎?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        1.選擇宅配到家，請填寫正確地址及可以收取商品時間，以確保正確送達<br />
+                        2.選擇超商取貨，請選好指定到達7-11或全家的地址，我們會透過地址資訊，配送至指定門市
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>我要怎麼知道目前出貨狀況呢?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        可以登入會員專區，點選訂單查詢功能，可確認目前出貨狀況，我們會在訂單下訂後，就進行訂單確認，隔天進行出貨，3-5天內送達配送地，訂單到達時也會以簡訊方式，通知到貨!
+                    </div>
+                </div>
+            </div>
+            <div id="section5" class="section">
+                <h2>取消訂單與退貨</h2>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>收到商品發現有問題該如何處理?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        請於簽收包裹後的七日內（從收貨日的隔日開始計算），提供商品照傳至我們官方LINE帳號。<br />
+                        也請您留下您的訂單編號、姓名、聯繫方式、商品問題，我們專人會儘速聯繫您，為您解決問題。
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>要申請退貨如何處理?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        商品有7天鑑賞，若商品有瑕疵、過期、配送錯誤或不滿意，提供商品照傳至我們官方LINE帳號。<br />
+                        也請您留下您的訂單編號、姓名、聯繫方式、商品問題，我們專人會儘速聯繫您，為您解決問題。
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>我要怎麼申請退款呢？</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        若您完成退貨流程，退款會依照您付款方式退款給您：<br />
+                        信用卡付款：款項將退款至您的信用卡，信用卡入帳時間會依照各銀行作業流程，進行入帳。<br />
+                        貨到付款：請透過我們官方LINE帳號或我們實體店面，提供商品給我們處理後續事宜。
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>我想取消訂單怎麼辦?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        訂單取消說明...
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>我忘記去超商取貨，包裏被退回，怎麼辦？</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        若該商品尚未出貨，需要取消訂單，可以透過我們官方LINE帳號，我們會確認訂單狀態，並協助您完成取消訂單手續!
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>超商取貨，超過時間忘記收貨如何處理?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        1.商品出貨，會使用簡訊方式通知您到貨，需要留意簡訊資訊<br />
+                        2.若還是不小心忘記，7天內我們會透過您留下電話及mail資訊，通知您收貨，超過7天則退回店面，若有要取貨請至我們店面取貨!<br />
+                        3.若超過7天都聯繫不到人，我們會視為您放棄領取商品且不予退款，如有不便之處煩請見諒!
+                    </div>
+                </div>
+            </div>
+            <div id="section6" class="section">
+                <h2>發票問題</h2>
+                <div class="question">
+                    <div class="question-header" onclick="toggleContent(this)">
+                        <span>包裹內沒有發票怎麼辦?</span>
+                        <span class="toggle-button">+</span>
+                    </div>
+                    <div class="question-content">
+                        可使用我們官方LINE帳號或到達店面，聯繫我們，我們會協助與您確認訂單發票!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab');
+            const sections = document.querySelectorAll('.section');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(tab => tab.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-target');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Set the first tab and section as active by default
+            if (tabs.length > 0) {
+                tabs[0].classList.add('active');
+                sections[0].classList.add('active');
+            }
+        });
+
+        function toggleContent(element) {
+            const content = element.nextElementSibling;
+            const toggleButton = element.querySelector('.toggle-button');
+
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                toggleButton.textContent = '+';
+            } else {
+                content.classList.add('active');
+                toggleButton.textContent = '-';
+            }
+        }
+
+    </script>
+</body>
+
+</html>
