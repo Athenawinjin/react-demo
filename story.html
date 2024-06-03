@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小草作 - 成長歷程</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        /* 區塊1 */
+        .containerer {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .headerer {
+            background-image: url('path-to-your-header-image.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
+            text-align: center;
+            color: #684647;  
+        }
+
+
+        .headerer h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .headerer p {
+            font-size: 1.2em;
+        }
+
+        .section {
+            padding: 60px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section:nth-child(even) {
+            background-color: #fff;
+        }
+
+        .section:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .section img {
+            width: 50%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .section-content {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .section-content h2 {
+            font-size: 1.5em;
+            margin: 0 0 20px;
+        }
+
+        .section-content p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: 6846470;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .section {
+                flex-direction: column;
+            }
+
+            .section img,
+            .section-content {
+                width: 100%;
+            }
+        }
+
+        /* 區塊1 */
+        /* 區塊2 */
+        .cont {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .head {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .head h1 {
+            font-size: 2em;
+            color: #684647;  
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            margin: 0 5px;
+        }
+
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid #684647;
+        }
+
+        .tab-content {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .values {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .value {
+            text-align: center;
+        }
+
+        .value img {
+            max-width: 50px;
+            margin-bottom: 10px;
+        }
+
+        .value p {
+            font-size: 1em;
+            color: #684647;  
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            /* 增加間距 */
+        }
+
+        .text-content {
+            flex: 1;
+            position: relative;
+            min-width: 300px;
+            box-sizing: border-box;
+            /* 确保 padding 和 border 不会影响元素宽度 */
+        }
+
+        .text-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(231, 227, 227, 0.6);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #684647;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .btn:hover {
+            background-color: #D79C9D;
+        }
+
+        /* 區塊2 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #684647;
+        }
+
+        .cont02 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .head02 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .head02 h1 {
+            font-size: 1.5em;
+            color: #684647;  
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content02 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content02 img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .text-content {
+            max-width: 600px;
+            margin: 0 20px;
+        }
+
+        .text-content h2 {
+            font-size: 1.2em;
+            color: #684647;  
+            margin-bottom: 20px;
+        }
+
+        .text-content p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #684647;  
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .timeline span {
+            font-size: 0.9em;
+            color: #684647;  
+            cursor: pointer;
+        }
+
+        .nav-arrows {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            width: 68%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .nav-arrows span {
+            pointer-events: all;
+            font-size: 2em;
+            color: #bbb;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-arrows span:hover {
+            color: #777;
+        }
+
+        .nav-arrows {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .text-content {
+                max-width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .content img {
+                max-width: 100%;
+            }
+
+            .nav-arrows {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><img src="./images/11.png" alt="Logo"></div>
+        <img src="./images/menu-icon.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員專區</a>
+            <a href="./Q&A.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+    
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+    
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+    
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <!-- 區塊1 -->
+    <div class="headerer">
+        <h1>品牌故事</h1>
+        <p>每一杯茶韻花語，都如同一座微型的島嶼，承載著獨特的風景和故事。</p>
+    </div>
+    
+    <div class="containerer">
+    
+        <div class="section">
+            <div class="section-content">
+                <h2>每一杯茶韻花語都深信一句座右銘：「恰到好處，才會更上一層樓。」</h2>
+                <p>
+                    每一杯茶韻花語都呈現出「剛剛好」的生活態度，拒絕多餘，節省浪費，堅持保留真實自我，與真實生活相融相映。</p>
+            </div>
+            <img src="./images/area/05.jpg" alt="Image 1">
+        </div>
+    
+        <div class="section">
+            <img src="./images/area/10.png" alt="Image 2">
+            <div class="section-content">
+                <h2>樂享生活</h2>
+                <p>每一杯茶韻花語都代表著悠然自得的健康生活態度。每一杯茶都源自100%的純天然原料，成為您輕鬆愜意的健康之選，保留了自然生活的悠閒風情。</p>
+                <a href="#" class="btn">詳細查看生活</a>
+            </div>
+        </div>
+    
+        <div class="section">
+            <div class="section-content">
+                <h2>每一杯茶韻花語都凝聚了純淨之力，以真摯感召著生活的本真面貌。</h2>
+                <p>堅持原料來自台灣產地的準則，精選最好的原料。挑選產地優良的農作物，直接感受自然之美，品味茶韻花語的極致滋味，享受自然生活的純粹魅力。</p>
+                <a href="#" class="btn">探索產地</a>
+            </div>
+            <img src="./images/area/09.png" alt="Image 3">
+        </div>
+    
+        <div class="section">
+            <img src="./images/area/08.png" alt="Image 4">
+            <div class="section-content">
+                <h2>茶韻花語堅守的核心價值</h2>
+                <p>以開放、和諧、療癒的價值觀，以最原始的方式展現給您。保留最真實的情感，探索自然界的充盈與調和。</p>
+                <a href="#" class="btn">探索理念</a>
+            </div>
+        </div>
+    
+    </div>
+    <!-- 區塊1 -->
+    <div class="cont">
+        <div class="head">
+            <h1>小草作品牌故事</h1>
+        </div>
+        <div class="tabs">
+            <div class="tab active" data-tab="tab1">價值觀</div>
+            <div class="tab" data-tab="tab2">團隊故事</div>
+        </div>
+        <div id="tab1" class="tab-content active">
+            <div class="content">
+                <div class="text-content">
+                    <img src="./images/area/06.png" alt="圖片1">
+                    <div class="overlay">
+                        <p>自然與健康：強調產品的天然成分與對身體健康的促進作用。/p>
+                        <a href="#" class="btn">核心價值</a>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <img src="./images/area/04.jpg" alt="圖片2">
+                    <div class="overlay">
+                        <p>品質與傳統：注重傳統飲茶文化，追求高品質的原料與製作工藝。</p>
+                        <a href="#" class="btn">持續目標</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tab2" class="tab-content">
+            <div class="content">
+                <div class="text-content">
+                    <img src="./images/area/01.png" alt="圖片1">
+                    <div class="overlay">
+                        <p>我們的團隊由一群對大自然、健康和美味充滿熱情的人組成。</p>
+                        <a href="#" class="btn">加入小草作團隊</a>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <img src="./images/area/02.jpg" alt="圖片2">
+                    <div class="overlay">
+                        <p>我們的故事始於對桃花與蜜桃的熱愛，這兩者不僅代表著大自然的美好，更像徵著我們對生命的熱情與享受。</p>
+                        <a href="#" class="btn">查看相關職缺</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+    <div class="cont02">
+        <div class="head02">
+            <h1>小草作的每一步成長，都有您的支持。</h1>
+        </div>
+        <div class="slider" id="slider">
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>初試花茶輕歌曼舞</h2>
+                        <p>
+                            在2014年至2015年間，我們的花茶品牌開始了一段美妙的序曲。<br />
+                            我們深深熱愛花草的香氣與療癒力量，決心將這份熱情轉化為產品。<br />
+                            這段時間裡，我們用心挑選各種花草原料，嘗試不同的製作工藝，追求最純粹的口感和獨特的風味。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>花茶品牌之路：茁壯成長</h2>
+                        <p>
+                            隨著時間的推移，我們的花茶品牌逐漸茁壯成長。<br />
+                            在2016年至2018年間，我們不斷學習和進步，不斷優化產品配方和包裝設計，努力提升品質和服務。<br />
+                            這段時間，我們開始建立起一群忠實的顧客群，他們對我們的產品充滿信任和喜愛。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>花開茶香：品牌擴展新征程</h2>
+                        <p>
+                            到了2019年，我們的花茶品牌迎來了一個重要的里程碑，那就是擴展。<br />
+                            我們開始尋找更廣闊的市場，拓展更多的銷售渠道，讓更多的人能夠品嚐到我們的花茶。<br />
+                            同時，我們也不斷推出新品種和新口味，滿足不同顧客的需求。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>銘記本真：花茶品質再提升</h2>
+                        <p>
+                            在2020年，我們決定將焦點聚在提升產品品質和品牌形象上。<br />
+                            我們不再盲目擴張，而是專注於提升現有產品的品質和口感，<br />
+                            打造出更具特色和競爭力的花茶產品，讓顧客能夠享受到更好的品質和服務。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>花語傳情：品牌再度提昇</h2>
+                        <p>
+                            在2020年，我們決定將焦點聚在提升產品品質和品牌形象上。<br />
+                            我們不再盲目擴張，而是專注於提升現有產品的品質和口感，<br />
+                            打造出更具特色和競爭力的花茶產品，讓顧客能夠享受到更好的品質和服務。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>銘記本真：花茶品質再提升</h2>
+                        <p>
+                            2021年，我們再次提升了花茶品牌的水平。<br />
+                            我們不斷改進製作工藝，精選更優質的原料，不斷創新推出更多口味和產品系列，以滿足不同顧客的需求。<br />
+                            同時，我們也加強了品牌宣傳和市場推廣，提高了品牌知名度和影響力。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content02">
+                    <div class="text-content">
+                        <h2>花茶新風采：邁向全新旅程</h2>
+                        <p>
+                            2022年，我們將開啟全新的旅程。<br />
+                            在過去的幾年裡，我們不斷成長和提升，但我們知道，這只是我們品牌發展的開始。<br />
+                            我們將繼續堅持品質第一的原則，不斷創新和進步，為顧客帶來更多驚喜和美好的花茶體驗。
+                        </p>
+                    </div>
+                    <img src="./images/area/09.png" alt="Fruit Image">
+                </div>
+            </div>
+        </div>
+        <div class="nav-arrows">
+            <span id="prev">❮</span>
+            <span id="next">❯</span>
+        </div>
+        <div class="timeline">
+            <span id="btn1">2014-2015: 序曲</span>
+            <span id="btn2">2016-2018: 成長</span>
+            <span id="btn3">2019: 擴展</span>
+            <span id="btn4">2020: 聚焦</span>
+            <span id="btn5">2021: 再提昇</span>
+            <span id="btn6">2022: 全新旅程</span>
+        </div>
+    </div>
+    <script>
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+        const timelineButtons = document.querySelectorAll('.timeline span');
+
+        let currentIndex = 0;
+
+        function updateSlider(index) {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        prev.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+            updateSlider(currentIndex);
+        });
+
+        next.addEventListener('click', () => {
+            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+            updateSlider(currentIndex);
+        });
+
+        timelineButtons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider(currentIndex);
+            });
+        });
+    </script>
+
+<footer class="footer">
+    <div class="footer-left">
+        <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+    </div>
+    <div class="footer-center">
+        <div class="footer-section">
+            <h3>關於茶韻花茶</h3>
+            <ul>
+                <li><a href="#">品牌故事</a></li>
+                <li><a href="#">從產地到手心</a></li>
+                <li><a href="#">退款政策</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>客戶服務</h3>
+            <ul>
+                <li><a href="#">常見問答</a></li>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>茶韻花語知識</h3>
+            <ul>
+                <li><a href="#">認識花茶</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>聯絡茶韻花語</h3>
+            <ul>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </div>
+    </div>
+  </footer>
+</body>
+
+</html>
