@@ -1,0 +1,136 @@
+.product-details-1 {
+	display: flex;
+	margin: 30px 10px;
+}
+
+.main-image {
+	flex:13;
+}
+
+.thumbnail-images {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.thumbnail {
+	width: 100px;
+	/* Adjust as needed */
+	height: auto;
+	margin-bottom: 10px;
+	/* Adjust spacing between thumbnails */
+	cursor: pointer;
+}
+
+/* 新增最新消息 */
+.news {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2.5em;
+    margin-bottom: 0;
+	color: #684647;
+}
+
+.subtitle {
+    color: red;
+    margin-top: 0;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+}
+
+.news-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.main-news {
+    position: relative;
+    width: 60%;
+}
+
+.main-news img {
+    width: 100%;
+}
+
+.main-news-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    text-align: left;
+    background-color: rgba(133, 73, 73, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.main-news-text h3 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.main-news-text h4 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.main-news-text p {
+    font-size: 1em;
+}
+
+.side-news-container {
+    width: 35%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.side-news {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    transition: top 0.5s ease-in-out;
+}
+
+.news-item {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+
+.pagination {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+}
+
+
+
+
+

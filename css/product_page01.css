@@ -1,0 +1,257 @@
+/* product_page01 */
+.slideshow-container {
+	position: relative;
+	max-width: 1200px;
+	margin: auto;
+	margin-left: 400px;
+	margin-top: 50px;
+}
+
+.slide {
+	display: none;
+}
+
+.active {
+	display: block;
+}
+
+.big-image {
+	width: 500px;
+	height: 500px;
+	border-radius: 10px;
+}
+
+.thumbnail {
+	width: 100px;
+	height: auto;
+	cursor: pointer;
+}
+
+.thumbnail:hover {
+	opacity: 0.7;
+}
+
+/* 在原有的基礎上添加以下樣式 */
+.active-thumbnail {
+	border: 2px solid blue;
+	/* 或者你想要的任何樣式 */
+}
+
+/* 將小圖置於大圖正下方 */
+.thumbnails {
+	display: flex;
+	justify-content: left;
+	margin-top: 5px;
+	/* 調整距離 */
+}
+
+.thumbnail {
+	margin: 0 10px;
+	/* 調整小圖之間的間距 */
+	cursor: pointer;
+}
+
+.thumbnails img {
+	border-radius: 10px;
+}
+
+/* ...............................頁籤.......................... */
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Noto+Serif+TC&display=swap');
+
+.tab-container {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin:0 300px;
+    margin-top: 630px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #D7A5B1;
+}
+
+.tab {
+    padding: 10px 20px;
+    /* margin-right: 150px; */
+    margin: 50px 100px 20px;
+    cursor: pointer;
+    /* background-color: lightgray; */
+    font-family: "Noto Serif TC", serif;
+    font-size: 20px;
+    color: #351717;
+    background-color: #D9D9D9;
+}
+
+.tab.active {
+    padding: 10px 20px;
+    margin-right: 100px;
+    /* background-color: lightblue; */
+    text-decoration: underline;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: "Noto Serif TC", serif;
+    font-size: 20px;
+    background-color: #D7A5B1;
+}
+
+.tab-content {
+    display: none;
+    margin: 0 100px;
+    /* 设置内容左右边距为 100px */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* 全域選擇器，基本取消 */
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    /* 歸0為1rem/16 */
+}
+
+.b {
+    display: block;
+    width: 200px;
+    margin: 0 15px;
+    border-radius: calc(10px);
+}
+
+
+body {
+    font-family: "Noto Serif TC", serif;
+    margin: 0 auto;
+    /* 清除默認外邊距 */
+    padding: 0;
+}
+
+.banner02 {
+    /* background-color: #F1DDDC;
+    height: 2900px; */
+}
+
+.product-header {
+    margin-top: -150px;
+    width: 100vh;
+    height: 100vh;
+}
+
+.button {
+    border: 1px solid #e6dddd;
+    margin: 10px 15px;
+    border-radius: 50px;
+    background: linear-gradient(to top right, #D7A5B1, #AC7582);
+    height: 40px;
+    width: 200px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 5px;
+    color: #F1DDDC;
+    text-decoration: none;
+}
+
+#products {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 100px;
+}
+
+#products .list-box {
+    margin:50px 300px 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+
+}
+
+#products article {
+    /* border: 1px solid #666; */
+    flex: 0.2;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 380px;
+    margin: 100px 2px;
+}
+
+#product {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+}
+
+.span01 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #8E5252;
+    text-decoration: none;
+}
+
+.span02 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    text-align: center;
+    color: #381A1A;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.span {
+    color: #C22E2E;
+}
+
+
+
+.quantity {
+    display: flex;
+    align-items: center;
+}
+.minus{
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: #D7A5B1;
+    border: none;
+    font-size: 2rem;
+}
+.qty-input{
+    margin-bottom: 15px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    background-color: #D9D9D9;
+    border: none;
+    font-size: 1.5rem;   
+}
+.plus{
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: #D7A5B1;
+    border: none; 
+    font-size: 1.5rem;
+}
+.product-price{
+   font-weight: bold;
+   font-size: 1.5rem; 
+}
