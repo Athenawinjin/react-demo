@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送貨及付款方式選擇</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Noto+Serif+TC&display=swap');
+
+        .cart-container,
+        .delivery-payment-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        /* 進度條樣式 */
+        .cart-steps {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background-color: #684647;
+            margin: 5px;
+            position: relative;
+            color: #fff;
+        }
+
+        .step.active {
+            background-color: #a56c6c;
+        }
+
+        .step-number {
+            background-color: #e7b3b3;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+        }
+
+        /* 購物車內容樣式 */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-info img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: #f56a00;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-left: 10px;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background-color: #ddd;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .item-quantity input {
+            width: 40px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .item-subtotal {
+            font-weight: bold;
+            color: #f56a00;
+            margin-top: 10px;
+        }
+
+        .remove-item {
+            background-color: transparent;
+            border: none;
+            color: #f56a00;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .discount-section,
+        .future-discounts {
+            margin-bottom: 20px;
+        }
+
+        .discount {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+
+        .discount-label {
+            background-color: #f56a00;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .discount-text {
+            font-size: 14px;
+        }
+
+        .cart-summary,
+        .shopping-credit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cart-summary p,
+        .shopping-credit p {
+            font-size: 16px;
+        }
+
+        .actions {
+            text-align: right;
+        }
+
+        .continue-shopping {
+            background-color: #f56a00;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .continue-shopping:hover {
+            background-color: #e55b00;
+        }
+
+        /* 新增送貨及付款方式樣式 */
+        .delivery-payment-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .delivery-payment-section {
+            width: 65%;
+            min-width: 300px;
+        }
+
+        .delivery-payment-section h3 {
+            margin-bottom: 20px;
+        }
+
+        .delivery-payment-section label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .delivery-payment-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .shipping-info p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .order-summary {
+            width: 30%;
+            min-width: 300px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 20px;
+        }
+
+        .order-summary p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .order-summary h4 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            font-weight: bold;
+        }
+
+        .checkout-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .checkout-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Media Queries */
+
+        /* 平板裝置和較小螢幕 */
+        @media (max-width: 768px) {
+
+            .cart-container,
+            .delivery-payment-container {
+                padding: 15px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .item-info img {
+                margin-right: 10px;
+            }
+
+            .item-quantity {
+                margin-top: 10px;
+            }
+
+            .item-subtotal {
+                margin-top: 10px;
+            }
+
+            .discount-section,
+            .future-discounts {
+                padding: 10px 0;
+            }
+
+            .cart-summary,
+            .shopping-credit {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .continue-shopping {
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .delivery-payment-container {
+                flex-direction: column;
+            }
+
+            .delivery-payment-section,
+            .order-summary {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .order-summary {
+                margin-top: 20px;
+            }
+
+            .checkout-button {
+                width: 100%;
+            }
+        }
+
+        /* 手機裝置 */
+        @media (max-width: 480px) {
+            .cart-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step {
+                margin: 5px 0;
+            }
+
+            .cart-container {
+                padding: 10px;
+            }
+
+            .cart-item {
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+
+            .item-info img {
+                width: 80px;
+            }
+
+            .details {
+                margin-left: 10px;
+            }
+
+            .product-name,
+            .product-price,
+            .item-subtotal {
+                font-size: 14px;
+            }
+
+            .discount-section,
+            .future-discounts {
+                margin-bottom: 10px;
+            }
+
+            .discount {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .discount-label,
+            .discount-text {
+                font-size: 12px;
+            }
+
+            .cart-summary,
+            .shopping-credit {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-summary p,
+            .shopping-credit p {
+                font-size: 14px;
+            }
+
+            .actions {
+                text-align: center;
+            }
+
+            .delivery-payment-container {
+                padding: 10px;
+            }
+
+            .delivery-payment-section,
+            .order-summary {
+                margin-bottom: 20px;
+            }
+
+            .checkout-button {
+                padding: 10px;
+            }
+        }
+
+        header {
+            margin-left: -10px;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+    <header>
+        <div class="logo"><a href="./index.html"><img src="./images/11.png" alt="Logo"></a></div>
+        <img src="./images/23.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員專區</a>
+            <a href="./Q&A.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+
+    <div class="cart-steps">
+        <div class="step active">
+            <span class="step-number">1</span>
+            <span class="step-title">購物車</span>
+        </div>
+        <div class="step">
+            <span class="step-number">2</span>
+            <span class="step-title">填寫資料</span>
+        </div>
+        <div class="step">
+            <span class="step-number">3</span>
+            <span class="step-title">訂單確認</span>
+        </div>
+    </div>
+
+    <div class="cart-container">
+        <h2>購物車 (1件)</h2>
+        <div class="cart-item">
+            <div class="item-info">
+                <img src="https://via.placeholder.com/100" alt="商品圖片">
+                <div class="details">
+                    <p class="product-name">菓香福圓果乾水(10包)</p>
+                    <p class="product-price">
+                        NT$520 <span class="original-price">NT$570</span>
+                    </p>
+                </div>
+            </div>
+            <div class="item-quantity">
+                <button class="quantity-btn">-</button>
+                <input type="number" value="1" min="1">
+                <button class="quantity-btn">+</button>
+            </div>
+            <div class="item-subtotal">NT$520</div>
+            <button class="remove-item">×</button>
+        </div>
+
+        <div class="discount-section">
+            <h3>已享用之優惠</h3>
+            <div class="discount">
+                <span class="discount-label">優惠促銷</span>
+                <span class="discount-text">6/7-6/10 端午連假 台灣不限額免運</span>
+            </div>
+            <div class="discount">
+                <span class="discount-label">購物金回饋</span>
+                <span class="discount-text">滿額送購物金 - 一般會員</span>
+            </div>
+        </div>
+
+        <div class="future-discounts">
+            <h3>尚有更多精彩優惠等著你！目前未享用：</h3>
+            <div class="discount">
+                <span class="discount-label">優惠促銷</span>
+                <span class="discount-text">滿2000元 贈綜合果乾水（10入）乙盒 再買 NT$1,480 即享有贈品</span>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <p class="subtotal-text">金額小計</p>
+            <p class="subtotal-amount">NT$520</p>
+        </div>
+
+        <div class="shopping-credit">
+            <p>+NT$16 購物金</p>
+        </div>
+
+        <div class="actions">
+            <button class="continue-shopping">繼續購物</button>
+        </div>
+    </div>
+
+    <!-- 新增選擇送貨及付款方式區塊 -->
+    <div class="delivery-payment-container">
+        <div class="delivery-payment-section">
+            <h3>選擇送貨及付款方式</h3>
+            <label for="shipping-location">送貨地點</label>
+            <select id="shipping-location">
+                <option value="taiwan">台灣</option>
+            </select>
+            <label for="shipping-method">送貨方式</label>
+            <select id="shipping-method">
+                <option value="7-11-cod">7-11 貨到付款</option>
+                <option value="7-11-prepaid">7-11 先付款後取貨</option>
+                <option value="family-mart-cod">全家 貨到付款</option>
+                <option value="family-mart-prepaid">全家 先付款後取貨</option>
+            </select>
+            <div class="shipping-info">
+                <p>
+                    🔶 凡單筆訂單滿 NT$2500 以上，訂於超商取貨有存有機率，請下「宅配」送貨！謝謝您的體諒！
+                </p>
+                <p>
+                    📦 當選擇「7-11 取貨付款」時，會自動更新訂單。若您希望選擇此方式完成出貨。
+                </p>
+                <p>
+                    📧 商品托送超商後「送貨狀態」將隨即更新到訂單，系統會自動發送簡訊，煩請留意訊息於期限內前往門市取貨。
+                </p>
+                <p>
+                    📞 前單狀態超商後「已確認」後，2-3 個工作天內到達超商，若想查詢訂單狀態，可直接向客服提供訂購姓名或訂單編號，客戶人員會協助您查詢。
+                </p>
+            </div>
+            <label for="payment-method">付款方式</label>
+            <select id="payment-method">
+                <option value="7-11">7-11 取貨付款</option>
+            </select>
+        </div>
+
+        <div class="order-summary">
+            <h3>訂單資訊</h3>
+            <p>小計: NT$520</p>
+            <p>運費: 免運</p>
+            <p>使用優惠代碼</p>
+            <p>使用推薦代碼</p>
+            <h4>合計: NT$520</h4>
+            <p>訂單完成後獲得購物金</p>
+            <p>+ NT$16 購物金</p>
+            <button class="checkout-button">前往結帳</button>
+        </div>
+    </div>
+
+    <script>
+        // 獲取付款方式下拉選單
+        var paymentMethodSelect = document.getElementById("payment-method");
+
+        // 獲取信用卡付款選項
+        var creditCardOption = document.createElement("option");
+        creditCardOption.text = "信用卡";
+        creditCardOption.value = "credit-card";
+
+        // 獲取銀行轉帳付款選項
+        var bankTransferOption = document.createElement("option");
+        bankTransferOption.text = "銀行轉帳";
+        bankTransferOption.value = "bank-transfer";
+
+        // 監聽送貨方式下拉選單的變化
+        document.getElementById("shipping-method").addEventListener("change", function () {
+            // 清除原有的選項
+            paymentMethodSelect.innerHTML = "";
+
+            // 根據所選的送貨方式選擇相應的付款選項
+            if (this.value === "7-11" || this.value === "全家") {
+                paymentMethodSelect.appendChild(creditCardOption);
+                paymentMethodSelect.appendChild(bankTransferOption);
+            } else if (this.value === "family-mart-cod") {
+                // 全家 貨到付款，只顯示全家 貨到付款這一個選項
+                var familyMartCODOption = document.createElement("option");
+                familyMartCODOption.text = "全家 貨到付款";
+                familyMartCODOption.value = "family-mart-cod";
+                paymentMethodSelect.appendChild(familyMartCODOption);
+            } else if (this.value === "family-mart-prepaid") {
+                // 全家 先付款後取貨，只顯示信用卡和銀行轉帳這兩個選項
+                paymentMethodSelect.appendChild(creditCardOption);
+                paymentMethodSelect.appendChild(bankTransferOption);
+            } else {
+                // 如果不是以上情況，預設顯示 7-11 取貨付款這一個選項
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "7-11 取貨付款";
+                defaultOption.value = "7-11";
+                paymentMethodSelect.appendChild(defaultOption);
+            }
+        });
+        // 監聽前往結帳按鈕的點擊事件
+        document.querySelector(".checkout-button").addEventListener("click", function () {
+            // 獲取所選的送貨方式和付款方式
+            var deliveryMethod = document.getElementById("shipping-method").value;
+            var paymentMethod = document.getElementById("payment-method").value;
+            var checkoutLink;
+
+            // 根據所選的送貨方式和付款方式設置連結
+            if (deliveryMethod === "7-11" && paymentMethod === "7-11") {
+                // 711 貨到付款，連結a
+                checkoutLink = "./shopping02-supermarket.html";
+            } else if (deliveryMethod === "7-11" && paymentMethod === "credit-card") {
+                // 711 先付款後取貨，信用卡，連結b
+                checkoutLink = "./shopping02-pany.html";
+            } else if (deliveryMethod === "7-11" && paymentMethod === "bank-transfer") {
+                // 711 先付款後取貨，銀行轉帳，連結c
+                checkoutLink = "./shopping02-supermarket.html";
+            } else if (deliveryMethod === "family-mart-cod") {
+                // 全家 貨到付款，連結d
+                checkoutLink = "./shopping02-supermarket.html";
+            } else if (deliveryMethod === "family-mart-prepaid") {
+                // 全家 先付款後取貨，連結e
+                checkoutLink = "./shopping02-supermarket.html";
+            } else {
+                // 其他情況默認為 711 貨到付款，連結a
+                checkoutLink = "./shopping02-supermarket.html";
+            }
+
+            // 在新分頁中打開連結
+            window.open(checkoutLink, '_blank');
+        });
+
+    </script>
+
+
+    <script>
+        function updateTotals() {
+            let total = 0;
+            const itemSubtotals = document.querySelectorAll('.item-subtotal .subtotal');
+            itemSubtotals.forEach(subtotalElement => {
+                total += parseFloat(subtotalElement.textContent);
+            });
+            document.getElementById('cart-total').textContent = total.toFixed(2);
+            document.getElementById('summary-total').textContent = total.toFixed(2);
+            document.getElementById('summary-grand-total').textContent = total.toFixed(2);
+        }
+
+        function increaseQuantity(button) {
+            const quantityInput = button.previousElementSibling;
+            let quantity = parseInt(quantityInput.value);
+            quantity += 1;
+            quantityInput.value = quantity;
+
+            const priceElement = button.closest('.cart-item').querySelector('.product-price .price');
+            let price = parseFloat(priceElement.textContent) / (quantity - 1) * quantity;
+            priceElement.textContent = price.toFixed(2);
+
+            const subtotalElement = button.closest('.cart-item').querySelector('.item-subtotal .subtotal');
+            subtotalElement.textContent = price.toFixed(2);
+
+            updateTotals();
+        }
+
+        function decreaseQuantity(button) {
+            const quantityInput = button.nextElementSibling;
+            let quantity = parseInt(quantityInput.value);
+            if (quantity > 1) {
+                quantity -= 1;
+                quantityInput.value = quantity;
+
+                const priceElement = button.closest('.cart-item').querySelector('.product-price .price');
+                let price = parseFloat(priceElement.textContent) / (quantity + 1) * quantity;
+                priceElement.textContent = price.toFixed(2);
+
+                const subtotalElement = button.closest('.cart-item').querySelector('.item-subtotal .subtotal');
+                subtotalElement.textContent = price.toFixed(2);
+
+                updateTotals();
+            }
+        }
+
+        function removeItem(button) {
+            const cartItem = button.closest('.cart-item');
+            cartItem.remove();
+            updateTotals();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTotals();
+        });
+    </script>
+
+    <script>
+        document.querySelector('.remove-item').addEventListener('click', function () {
+            // 移除購物車商品
+            const cartContainer = document.querySelector('.cart-container');
+            const deliveryPaymentContainer = document.querySelector('.delivery-payment-container');
+
+            cartContainer.innerHTML = `
+    <h2>購物車</h2>
+    <p>當前購物車無任何商品</p>
+    <div class="actions">
+        <button class="continue-shopping">繼續購物</button>
+    </div>
+`;
+
+            // 隱藏選擇送貨及付款方式區塊和訂單資訊區塊
+            deliveryPaymentContainer.style.display = 'none';
+        });
+    </script>
+
+    <!-- footer -->
+    <div class="hero">
+        <div class="hero-content">
+            <h2>每一件食材，皆是滴釀的回甘</h2>
+            <p>我們將聽取更多不同的回聲，持續回饋產品的提升<br>
+                若有想要詢問問題，歡迎點擊下方按鈕聯繫茶韻花語</p>
+            <div class="buttons">
+                <a href="#" class="btnn">聯絡茶韻花語</a>
+                <a href="#" class="btnn">LINE 線上客服</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+            </div>
+            <div class="footer-section">
+                <h3>關於茶韻花語</h3>
+                <ul>
+                    <li><a href="#">品牌故事</a></li>
+                    <li><a href="#">在地經營體驗</a></li>
+                    <li><a href="#">永續經營的堅持</a></li>
+                    <li><a href="#">符合認證安心的好品質</a></li>
+                    <li><a href="#">服務條款</a></li>
+                    <li><a href="#">退換政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>客戶服務</h3>
+                <ul>
+                    <li><a href="#">會員服務</a></li>
+                    <li><a href="#">商品配送</a></li>
+                    <li><a href="#">退換貨服務</a></li>
+                    <li><a href="#">常見問題</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                    <li><a href="#">加入會員好康</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>茶韻花語生活集</h3>
+                <ul>
+                    <li><a href="#">日常新鮮集</a></li>
+                    <li><a href="#">飲用心得觀</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul class="social-icons">
+                <li><a href="https://www.facebook.com/"><img src="./images/25.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/"><img src="./images/26.png" alt="Instagram"></a></li>
+                <li><a href="https://www.youtube.com/"><img src="./images/27.png" alt="YouTube"></a></li>
+            </ul>
+            <p>採用純天然花果茶，感受茶飲的好味道。</p>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+
+
+
+
+</html>
