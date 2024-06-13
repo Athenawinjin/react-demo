@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Noto+Serif+TC&display=swap');
+
+/* .................茶韻花語真心推薦............................ */
+.image-block {
+	display: flex;
+	justify-content: space-between;
+}
+
+.image-container {
+	position: relative;
+	width: 30%;
+	overflow: hidden;
+}
+
+.image {
+	width: 100%;
+	height: auto;
+	transition: transform 0.3s ease;
+}
+
+.overlaya {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(77, 40, 40, 0.5);
+	padding: 20px;
+	box-sizing: border-box;
+	transform: translateY(100%);
+	transition: transform 0.3s ease;
+}
+
+.overlaya h3 {
+	margin: 0;
+	color: #dfc1c8;
+	font-family: "Noto Serif TC", serif;
+}
+
+.image-container:hover .overlaya {
+	transform: translateY(0);
+}
+
+/* 如果屏幕寬度小於 768px，則應用這些樣式 */
+@media screen and (max-width: 768px) {
+	.image-block {
+		display: block;
+		/* 將圖片塊改為塊級元素，讓圖片直向排列 */
+	}
+
+	.image-container {
+		width: 100%;
+		/* 讓圖片佔滿寬度 */
+		margin-bottom: 20px;
+		/* 添加下方間距 */
+	}
+
+	.overlaya {
+		transform: translateY(100%);
+		/* 將 overlay 隱藏在圖片下方 */
+	}
+
+	.tit02 h2 {
+		margin-top: 0;
+		/* 移除標題的頂部間距 */
+	}
+
+	.btn a {
+		width: auto;
+		/* 讓按鈕寬度自動調整 */
+	}
+}
+/* .................茶韻花語真心推薦............................ */
+
+
+
+/* ...........................區塊二新品................................. */
+.image-blocka {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin: 60px  150px;
+	/* 左右外距為 150px */
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+
+.image-blocka .image-containera {
+	width: 712px;
+	height: 540px;
+	overflow: hidden;
+	position: relative;
+	margin-top: 20px;
+}
+
+
+.image-blocka .image-containera img {
+	width: 100%;
+	height: auto;
+	transition: transform 0.3s ease;
+}
+
+
+.image-blocka .image-containera:hover img {
+	transform: scale(1.1);
+}
+
+
+.image-blocka .image-title {
+	width: 712px;
+	height: 60px;
+	background-color: rgba(107, 71, 71, 0.5);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+
+.image-blocka .small-images {
+	width: 712px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-left: 100px;
+	/* 加入間距 */
+	margin-top: -20px;
+}
+
+
+.image-blocka .small-image {
+	width: 100%;
+	height: 250px;
+	overflow: hidden;
+	position: relative;
+	margin-top: 40px;
+}
+
+
+.image-blocka .small-image img {
+	width: 100%;
+	height: auto;
+	transition: transform 0.3s ease;
+
+}
+
+
+.image-blocka .small-image:hover img {
+	transform: scale(1.1);
+}
+
+
+.image-blocka .small-image:last-child {
+	margin-bottom: 0;
+}
+
+
+.image-blocka .small-image .image-title {
+	width: 100%;
+	height: 60px;
+	background-color: rgba(107, 71, 71, 0.5);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+/* 平板 */
+@media (max-width: 1366px) {
+	.image-blocka {
+		flex-direction: column;
+		align-items: center;
+		margin: 0 50px;
+	}
+
+	.image-blocka .image-containera,
+	.image-blocka .small-images {
+		width: 100%;
+		margin-left: 0;
+		margin-top: 20px;
+	}
+
+	.image-blocka .image-title {
+		width: 100%;
+	}
+}
+
+/* 手機 */
+@media (max-width: 768px) {
+	.image-blocka {
+		flex-direction: column;
+		align-items: center;
+		margin: 0 20px;
+	}
+
+	.image-blocka .image-containera,
+	.image-blocka .small-images {
+		width: 100%;
+		height: 400px;
+		margin-left: 0;
+		margin-top: 20px;
+	}
+
+	.image-blocka .image-containera {
+		height: 300px;
+	}
+
+	.image-blocka .small-image {
+		margin-top: 20px;
+		height: 200px;
+	}
+
+	.image-blocka .image-title {
+		width: 100%;
+		height: 40px;
+	}
+}
+
+/* ..................最後區塊.................... */
+.containerd {
+	position: relative;
+	width: 100%;
+	height: 827px;
+	margin: 0 auto;
+	background: #f0f0f0;
+	overflow: hidden;
+}
+
+
+.big-imaged {
+	width: 100%;
+	height: auto;
+}
+
+
+.card-containerd {
+	position: absolute;
+	bottom: 0;
+	left: calc(50% - (319px / 2));
+	/* center horizontally */
+	display: flex;
+	justify-content: space-between;
+	width: 957px;
+	/* 319px * 3 cards */
+}
+
+
+.cardd {
+	width: 319px;
+	height: 606px;
+	/* border: 1px solid #ccc; */
+	position: relative;
+	cursor: pointer;
+	perspective: 1000px;
+}
+
+
+.cardd .front-faced,
+.cardd .back-faced {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+	transition: transform 0.5s;
+}
+
+
+.cardd .back-faced {
+	transform: rotateY(180deg);
+	opacity: 0;
+	/* 背面初始不可見 */
+	transition: opacity 0.5s ease-in-out;
+	/* 添加過渡效果 */
+}
+
+
+.vertical-textd {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 20px;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	/* 設置行間距為 8px */
+	opacity: 0;
+	/* 初始不可見 */
+	transition: opacity 0.5s ease-in-out 0.5s;
+	/* 添加延遲過渡效果 */
+	-webkit-writing-mode: vertical-lr;
+	writing-mode: vertical-lr;
+	color: #c98383;
+	font-size: 30px;
+	margin-top: 20px;
+}
+
+
+.cardd:hover .vertical-textd {
+	opacity: 1;
+	/* 滑鼠懸停時逐漸顯示 */
+}
+
+
+.cardd:hover .front-faced {
+	transform: rotateY(180deg);
+}
+
+
+.cardd:hover .back-faced {
+	transform: rotateY(0deg);
+	opacity: 1;
+	/* 翻牌時背面逐漸顯示 */
+}
+
+
+.cardd .front-faced {
+	transform: rotateY(0deg);
+	/* 將正面翻轉到可見 */
+}
+
+
+.cardd .front-faced .vertical-textd {
+	opacity: 1;
+	/* 在正面顯示文字 */
+}
+
+.cardd .bottom-textd,
+.back-bottom-textd {
+	margin-top: 40px;
+}
+
+
+/* Styles for mobile devices */
+@media (max-width: 768px) {
+	.containerd {
+		width: 100%;
+		height: auto;
+	}
+
+	.card-containerd {
+		position: static;
+		display: block;
+		width: 100%;
+	}
+
+	.cardd {
+		width: 100%;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	.cardd img {
+		width: 100%;
+		height: auto;
+	}
+
+	.vertical-textd {
+		position: static;
+		transform: none;
+		margin-top: 10px;
+	}
+}
+
+/* ............梅花茶............... */
+@media only screen and (max-width: 1366px) {
+	.bg02 img {
+		width: 1007px;
+		height: 600px;
+	}
+}
