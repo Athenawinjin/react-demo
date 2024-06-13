@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單明細</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #684647;
+        }
+
+        .cont {
+            width: 90%;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .head nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .head nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .head nav ul li {
+            margin-right: 20px;
+        }
+
+        .head nav ul li a {
+            text-decoration: none;
+            color: #D79C9D;
+        }
+
+        .head nav ul li a:hover {
+            color: #684647;
+        }
+
+        .head nav .logout {
+            text-decoration: none;
+            color: #684647;
+        }
+
+        .contt {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: -40px;
+        }
+
+        .order-summary,
+        .order-details {
+            margin-bottom: 20px;
+        }
+
+        .order-summary h2,
+        .order-details h2 {
+            border-bottom: 2px solid #684647;
+            padding-bottom: 10px;
+        }
+
+        .product-info,
+        .total-info,
+        .order-details {
+            margin-bottom: 20px;
+        }
+
+        .product-info table,
+        .total-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .product-info th,
+        .product-info td,
+        .total-info th,
+        .total-info td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .product-info th {
+            background-color: #f2f2f2;
+        }
+
+        .discount-info {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .discount-info span {
+            display: block;
+        }
+
+
+        .order-info,
+        .customer-info,
+        .payment-info,
+        .shipping-info {
+            width: 45%;
+            display: inline-block;
+            vertical-align: top;
+            margin: 10px 2.5%;
+        }
+
+        .order-info table,
+        .customer-info table,
+        .payment-info table,
+        .shipping-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-info th,
+        .customer-info th,
+        .payment-info th,
+        .shipping-info th {
+            text-align: left;
+            width: 50%;
+            padding: 5px 0;
+        }
+
+        .order-info td,
+        .customer-info td,
+        .payment-info td,
+        .shipping-info td {
+            padding: 5px 0;
+        }
+
+
+
+        .comment-section {
+            margin: 20px 0;
+        }
+
+        .comment-section textarea {
+            width: calc(100% - 22px);
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .comment-section a {
+            padding: 10px 20px;
+            background-color: #684647;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            float: right;
+            text-decoration: none;
+            margin-bottom: 80px;
+        }
+
+        .comment-section a:hover {
+            background-color: #D79C9D;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .order-info,
+            .customer-info,
+            .payment-info,
+            .shipping-info {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .order-info th,
+            .customer-info th,
+            .payment-info th,
+            .shipping-info th {
+                display: block;
+                width: 100%;
+                padding: 5px 0;
+            }
+
+            .order-info td,
+            .customer-info td,
+            .payment-info td,
+            .shipping-info td {
+                display: block;
+                width: 100%;
+                padding: 5px 0;
+            }
+
+            .product-info table,
+            .total-info table {
+                width: 100%;
+            }
+
+            .product-info th,
+            .product-info td,
+            .total-info th,
+            .total-info td {
+                display: block;
+                width: 100%;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="./index.html"><img src="./images/11.png" alt="Logo"></a></div>
+        <img src="./images/23.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員專區</a>
+            <a href="./Q&A.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <div class="cont">
+        <div class="head">
+            <nav>
+                <ul>
+                    <li><a href="./member01.html">個人資訊</a></li>
+                    <li><a href="./member02.html">商店購物金</a></li>
+                    <li><a href="./member03.html">優惠券</a></li>
+                    <li><a href="./member04.html">訊息</a></li>
+                    <li><a href="./member05.html">訂單</a></li>
+                </ul>
+                <a href="#" class="logout">登出</a>
+            </nav>
+        </div>
+
+        <div class="contt">
+
+            <div class="order-summary">
+                <h2>訂單明細</h2>
+            </div>
+    
+            <div class="product-info">
+                <table>
+                    <tr>
+                        <th>商品資料</th>
+                        <th>優惠</th>
+                        <th>單件價格</th>
+                        <th>數量</th>
+                        <th>小計</th>
+                    </tr>
+                    <tr>
+                        <td>玫瑰蜜桃茶</td>
+                        <td></td>
+                        <td>NT$150</td>
+                        <td>1</td>
+                        <td>NT$220</td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div class="discount-info">
+                <span>已享用之優惠</span>
+                <span>購物金回饋: 滿額送購物金 - 一般會員</span>
+            </div>
+    
+            <div class="total-info">
+                <table>
+                    <tr>
+                        <th>小計:</th>
+                        <td>NT$150</td>
+                    </tr>
+                    <tr>
+                        <th>折抵購物金:</th>
+                        <td>NT$0 購物金</td>
+                    </tr>
+                    <tr>
+                        <th>運費:</th>
+                        <td>NT$70</td>
+                    </tr>
+                    <tr>
+                        <th>合計:</th>
+                        <td>NT$220</td>
+                    </tr>
+                    <tr>
+                        <th>訂單完成後獲得購物金:</th>
+                        <td>+NT$12 購物金</td>
+                    </tr>
+                </table>
+            </div>
+    
+    
+            <div class="order-details">
+                <h2>訂單詳細資訊</h2>
+                <div class="order-info">
+                    <table>
+                        <tr>
+                            <th>訂單編號:</th>
+                            <td>20240531132</td>
+                        </tr>
+                        <tr>
+                            <th>訂購日期:</th>
+                            <td>2024-06-13 09:28PM</td>
+                        </tr>
+                        <tr>
+                            <th>訂單狀態:</th>
+                            <td>已付款</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="customer-info">
+                    <table>
+                        <tr>
+                            <th>顧客資訊</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>姓名:</th>
+                            <td>陳小婉</td>
+                        </tr>
+                        <tr>
+                            <th>電話:</th>
+                            <td>0900***000</td>
+                        </tr>
+                        <tr>
+                            <th>生日:</th>
+                            <td>1997/12/29</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="payment-info">
+                    <table>
+                        <tr>
+                            <th>付款資訊</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>付款方式:</th>
+                            <td>信用卡</td>
+                        </tr>
+                        <tr>
+                            <th>付款狀態:</th>
+                            <td>已付款</td>
+                        </tr>
+                        <tr>
+                            <th>發票類型:</th>
+                            <td>雲端發票</td>
+                        </tr>
+                        <tr>
+                            <th>發票載具類型:</th>
+                            <td>會員載具</td>
+                        </tr>
+                        <tr>
+                            <th>發票載具顯示:</th>
+                            <td>會員載具 (abc@gmail.com)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="shipping-info">
+                    <table>
+                        <tr>
+                            <th>送貨資訊</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>送貨方式:</th>
+                            <td>全家 到店取貨</td>
+                        </tr>
+                        <tr>
+                            <th>送貨狀態:</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>取貨編號:</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>取貨門市:</th>
+                            <td>台北門市</td>
+                        </tr>
+                        <tr>
+                            <th>收件人姓名:</th>
+                            <td>林*婉</td>
+                        </tr>
+                        <tr>
+                            <th>收件人電話:</th>
+                            <td>0900***000</td>
+                        </tr>
+                        <tr>
+                            <th>門市地址:</th>
+                            <td>新竹市三里五大家195號</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    
+    
+            <div class="comment-section">
+                <a href="./product.html">返回</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- footer -->
+    <div class="hero">
+        <div class="hero-content">
+            <h2>每一件食材，皆是滴釀的回甘</h2>
+            <p>我們將聽取更多不同的回聲，持續回饋產品的提升<br>
+                若有想要詢問問題，歡迎點擊下方按鈕聯繫茶韻花語</p>
+            <div class="buttons">
+                <a href="#" class="btnn">聯絡茶韻花語</a>
+                <a href="#" class="btnn">LINE 線上客服</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+            </div>
+            <div class="footer-section">
+                <h3>關於茶韻花語</h3>
+                <ul>
+                    <li><a href="#">品牌故事</a></li>
+                    <li><a href="#">在地經營體驗</a></li>
+                    <li><a href="#">永續經營的堅持</a></li>
+                    <li><a href="#">符合認證安心的好品質</a></li>
+                    <li><a href="#">服務條款</a></li>
+                    <li><a href="#">退換政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>客戶服務</h3>
+                <ul>
+                    <li><a href="#">會員服務</a></li>
+                    <li><a href="#">商品配送</a></li>
+                    <li><a href="#">退換貨服務</a></li>
+                    <li><a href="#">常見問題</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                    <li><a href="#">加入會員好康</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>茶韻花語生活集</h3>
+                <ul>
+                    <li><a href="#">日常新鮮集</a></li>
+                    <li><a href="#">飲用心得觀</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul class="social-icons">
+                <li><a href="https://www.facebook.com/"><img src="./images/25.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/"><img src="./images/26.png" alt="Instagram"></a></li>
+                <li><a href="https://www.youtube.com/"><img src="./images/27.png" alt="YouTube"></a></li>
+            </ul>
+            <p>採用純天然花果茶，感受茶飲的好味道。</p>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+
+</html>

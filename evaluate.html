@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        .review-container {
+            width: 80%;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .review-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+
+        .rating-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+
+        .rating-score {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .rating-score .score {
+            font-size: 48px;
+            color: #f55;
+            margin-right: 10px;
+        }
+
+
+        .rating-score .stars {
+            font-size: 24px;
+            color: #f55;
+        }
+
+
+        .rating-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+
+        .rating-filters button {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+            color: #4D3037;
+        }
+
+
+        .rating-filters .active {
+            background-color: #f55;
+            color: #fff;
+            border-color: #f55;
+        }
+
+
+        .review {
+            margin-top: 20px;
+        }
+
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+
+        .reviewer-avatar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+
+        .reviewer-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .reviewer-info .stars {
+            font-size: 20px;
+            color: #f55;
+        }
+
+
+        .review-content p {
+            margin: 0 0 10px;
+            line-height: 1.6;
+        }
+
+
+        .review-images {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .review-images img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+
+
+        /* 新增評論表單樣式 */
+        #review-form {
+            margin-top: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 45%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #f55;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+
+        button[type="button"]:hover {
+            background-color: #d44;
+        }
+
+        header {
+            margin-left: -20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><img src="./images/11.png" alt="Logo"></div>
+        <img src="./images/menu-icon.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="#">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <div class="review-container">
+        <h2>商品評價</h2>
+        <!-- 新增的填寫評論表單 -->
+        <form id="review-form">
+            <div class="form-group">
+                <label for="account-picture">帳戶圖：</label>
+                <input type="file" id="account-picture" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="rating">評價星數：</label>
+                <select id="rating">
+                    <option value="1">1 星</option>
+                    <option value="2">2 星</option>
+                    <option value="3">3 星</option>
+                    <option value="4">4 星</option>
+                    <option value="5">5 星</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="specification">規格：</label>
+                <select id="specification">
+                    <option value="美容養顏">美容養顏</option>
+                    <option value="促進消化">促進消化</option>
+                    <option value="舒緩壓力">舒緩壓力</option>
+                    <option value="提升免疫力">提升免疫力</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="review-description">評論說明：</label>
+                <textarea id="review-description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="product-pictures">產品圖片：</label>
+                <input type="file" id="product-pictures" accept="image/*" multiple>
+            </div>
+            <button type="button" id="submit-review">送出評論</button>
+            <button type="button" id="cancel-review">取消評論</button>
+        </form>
+        <div class="rating-summary">
+            <div class="rating-score">
+                <span class="score">4.9</span>
+                <span>/5</span>
+                <div class="stars">★★★★★</div>
+            </div>
+            <div class="rating-filters">
+                <button class="active" data-rating="all">全部</button>
+                <button data-rating="5">5 星 (1)</button>
+                <button data-rating="4">4 星 (0)</button>
+                <button data-rating="3">3 星 (0)</button>
+                <button data-rating="2">2 星 (0)</button>
+                <button data-rating="1">1 星 (2)</button>
+                <button data-rating="comment">附上評論 (87)</button>
+                <button data-rating="image-video">附上照片/影片 (53)</button>
+            </div>
+        </div>
+        <div id="reviews">
+            <div class="review">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="./images/product/06.jpg" alt="Avatar">
+                    </div>
+                    <div class="reviewer-info">
+                        <span class="reviewer-name">s*****y</span>
+                        <div class="stars">★★★★★</div>
+                        <span class="review-date">2023-01-18 22:50</span>
+                        <span class="review-color">規格：美容養顏</span>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>品質：很好 和圖片相符：相符 場合：日常生活</p>
+                    <p>已是再次回購，二次都是買玫瑰花茶，而且品質很好，口感極佳。</p>
+                    <div class="review-images">
+                        <img src="./images/index/20.png" alt="Review Image 1">
+                        <img src="./images/index/21.png" alt="Review Image 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const reviewForm = document.getElementById('review-form');
+            const submitReviewButton = document.getElementById('submit-review');
+            const cancelReviewButton = document.getElementById('cancel-review');
+            const reviewsContainer = document.getElementById('reviews');
+
+
+            submitReviewButton.addEventListener('click', submitReview);
+            cancelReviewButton.addEventListener('click', cancelReview);
+
+
+            function submitReview() {
+                const accountPicture = document.getElementById('account-picture').files[0];
+                const rating = document.getElementById('rating').value;
+                const specification = document.getElementById('specification').value;
+                const reviewDescription = document.getElementById('review-description').value;
+                const productPictures = document.getElementById('product-pictures').files;
+                const reviewDate = new Date().toLocaleString();
+
+
+                const review = document.createElement('div');
+                review.className = 'review';
+
+
+                const reviewHeader = document.createElement('div');
+                reviewHeader.className = 'review-header';
+
+
+                const reviewerAvatar = document.createElement('div');
+                reviewerAvatar.className = 'reviewer-avatar';
+                const avatarImg = document.createElement('img');
+                avatarImg.src = URL.createObjectURL(accountPicture);
+                reviewerAvatar.appendChild(avatarImg);
+
+
+                const reviewerInfo = document.createElement('div');
+                reviewerInfo.className = 'reviewer-info';
+                const reviewerName = document.createElement('span');
+                reviewerName.className = 'reviewer-name';
+                reviewerName.textContent = '匿名用戶'; // 假設評論都是匿名
+                const reviewerStars = document.createElement('div');
+                reviewerStars.className = 'stars';
+                reviewerStars.textContent = '★'.repeat(rating);
+                const reviewDateElement = document.createElement('span');
+                reviewDateElement.className = 'review-date';
+                reviewDateElement.textContent = reviewDate;
+                const reviewColor = document.createElement('span');
+                reviewColor.className = 'review-color';
+                reviewColor.textContent = `規格：${specification}`;
+                reviewerInfo.append(reviewerName, reviewerStars, reviewDateElement, reviewColor);
+
+
+                reviewHeader.append(reviewerAvatar, reviewerInfo);
+
+
+                const reviewContent = document.createElement('div');
+                reviewContent.className = 'review-content';
+                const reviewDescriptionElement = document.createElement('p');
+                reviewDescriptionElement.textContent = reviewDescription;
+                reviewContent.appendChild(reviewDescriptionElement);
+
+
+                const reviewImages = document.createElement('div');
+                reviewImages.className = 'review-images';
+                Array.from(productPictures).forEach(picture => {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(picture);
+                    reviewImages.appendChild(img);
+                });
+
+
+                reviewContent.appendChild(reviewImages);
+                review.append(reviewHeader, reviewContent);
+                reviewsContainer.insertBefore(review, reviewsContainer.firstChild);
+
+
+                saveReviews();
+                reviewForm.reset();
+            }
+
+
+            function cancelReview() {
+                reviewForm.reset();
+            }
+
+
+            function saveReviews() {
+                localStorage.setItem('reviews', reviewsContainer.innerHTML);
+            }
+
+
+            function loadReviews() {
+                const savedReviews = localStorage.getItem('reviews');
+                if (savedReviews) {
+                    reviewsContainer.innerHTML = savedReviews;
+                }
+            }
+
+
+            loadReviews();
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ratingFilters = document.querySelector('.rating-filters');
+
+
+            // 計算評論數量
+            const countReviews = () => {
+                const reviews = document.querySelectorAll('.review');
+                const reviewCounts = {
+                    '5': 0,
+                    '4': 0,
+                    '3': 0,
+                    '2': 0,
+                    '1': 0,
+                    'comment': 0,
+                    'image-video': 0
+                };
+
+
+                reviews.forEach(review => {
+                    const stars = review.querySelector('.stars');
+                    const rating = stars.textContent.length;
+                    reviewCounts[rating]++;
+
+
+                    const reviewImages = review.querySelector('.review-images');
+                    if (reviewImages && reviewImages.childElementCount > 0) {
+                        reviewCounts['image-video']++;
+                    } else {
+                        reviewCounts['comment']++;
+                    }
+                });
+
+
+                // 更新按鈕上的數字
+                Object.keys(reviewCounts).forEach(key => {
+                    const button = ratingFilters.querySelector(`button[data-rating="${key}"]`);
+                    if (button) {
+                        button.textContent = `${key === 'comment' ? '附上評論' : key === 'image-video' ? '附上照片/影片' : key} (${reviewCounts[key]})`;
+                    }
+                });
+            };
+
+
+            // 篩選評論
+            ratingFilters.addEventListener('click', function (event) {
+                if (event.target.tagName === 'BUTTON') {
+                    const filter = event.target.dataset.rating;
+                    const reviews = document.querySelectorAll('.review');
+                    reviews.forEach(review => {
+                        const stars = review.querySelector('.stars');
+                        const rating = stars.textContent.length;
+                        const reviewImages = review.querySelector('.review-images');
+
+
+                        if (filter === 'comment' && (!reviewImages || reviewImages.childElementCount === 0)) {
+                            review.style.display = 'none';
+                        } else if (filter === 'image-video' && reviewImages && reviewImages.childElementCount > 0) {
+                            review.style.display = 'none';
+                        } else if (filter === 'all' || rating === parseInt(filter)) {
+                            review.style.display = 'block';
+                        } else {
+                            review.style.display = 'none';
+                        }
+                    });
+
+
+                    // 切換 active 樣式
+                    ratingFilters.querySelectorAll('button').forEach(button => {
+                        button.classList.remove('active');
+                    });
+                    event.target.classList.add('active');
+                }
+            });
+
+
+            // 初始顯示全部評論
+            ratingFilters.querySelector('button[data-rating="all"]').click();
+
+
+            countReviews(); // 初始化時計算評論數量
+
+
+            // 新增附上評論按鈕點擊事件
+            ratingFilters.querySelector('button[data-rating="comment"]').addEventListener('click', function () {
+                const reviews = document.querySelectorAll('.review');
+                reviews.forEach(review => {
+                    const reviewImages = review.querySelector('.review-images');
+                    if (!reviewImages || reviewImages.childElementCount === 0) {
+                        review.style.display = 'none';
+                    } else {
+                        review.style.display = 'block';
+                    }
+                });
+
+
+                ratingFilters.querySelectorAll('button').forEach(button => {
+                    button.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+
+
+            // 新增附上照片/影片按鈕點擊事件
+            ratingFilters.querySelector('button[data-rating="image-video"]').addEventListener('click', function () {
+                const reviews = document.querySelectorAll('.review');
+                reviews.forEach(review => {
+                    const reviewImages = review.querySelector('.review-images');
+                    if (!(reviewImages && reviewImages.childElementCount > 0)) {
+                        review.style.display = 'none';
+                    } else {
+                        review.style.display = 'block';
+                    }
+                });
+
+
+                ratingFilters.querySelectorAll('button').forEach(button => {
+                    button.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+
+    <!-- footer -->
+    <div class="hero">
+        <div class="hero-content">
+            <h2>每一件食材，皆是滴釀的回甘</h2>
+            <p>我們將聽取更多不同的回聲，持續回饋產品的提升<br>
+                若有想要詢問問題，歡迎點擊下方按鈕聯繫茶韻花語</p>
+            <div class="buttons">
+                <a href="#" class="btnn">聯絡茶韻花語</a>
+                <a href="#" class="btnn">LINE 線上客服</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+            </div>
+            <div class="footer-section">
+                <h3>關於茶韻花語</h3>
+                <ul>
+                    <li><a href="#">品牌故事</a></li>
+                    <li><a href="#">在地經營體驗</a></li>
+                    <li><a href="#">永續經營的堅持</a></li>
+                    <li><a href="#">符合認證安心的好品質</a></li>
+                    <li><a href="#">服務條款</a></li>
+                    <li><a href="#">退換政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>客戶服務</h3>
+                <ul>
+                    <li><a href="#">會員服務</a></li>
+                    <li><a href="#">商品配送</a></li>
+                    <li><a href="#">退換貨服務</a></li>
+                    <li><a href="#">常見問題</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                    <li><a href="#">加入會員好康</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>茶韻花語生活集</h3>
+                <ul>
+                    <li><a href="#">日常新鮮集</a></li>
+                    <li><a href="#">飲用心得觀</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul class="social-icons">
+                <li><a href="https://www.facebook.com/"><img src="./images/25.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/"><img src="./images/26.png" alt="Instagram"></a></li>
+                <li><a href="https://www.youtube.com/"><img src="./images/27.png" alt="YouTube"></a></li>
+            </ul>
+            <p>採用純天然花果茶，感受茶飲的好味道。</p>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+
+</html>

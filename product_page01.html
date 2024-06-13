@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茶韻花語玫瑰蜜桃茶</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .head nav {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .head nav a {
+            text-decoration: none;
+            color: #555;
+        }
+
+        .product {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-images {
+            width: 40%;
+        }
+
+        .main-image {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .thumbnail-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .thumbnail-images img {
+            width: 80px;
+            /* 设置缩略图的宽度，可以根据需要调整 */
+            border: 1px solid #ccc;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .product-details {
+            width: 55%;
+        }
+
+        .product-details h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            font-size: 16px;
+            color: #f0ad4e;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #d9534f;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .selection p,
+        .quantity p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .options button {
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .quantity-select {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .quantity-select button {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .quantity-select input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .add-to-cart {
+            padding: 10px 20px;
+            background-color: #684647;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #c07676;
+        }
+
+        .product-tabs {
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tab-buttons button {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tab-buttons button.active {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .recommendations {
+            margin-top: 40px;
+        }
+
+        .recommendation-items {
+            display: flex;
+            gap: 20px;
+        }
+
+        .recommendation-item {
+            width: 45%;
+        }
+
+        .recommendation-item img {
+            width: 200px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .recommendation-item p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .recommendation-item .price {
+            font-size: 18px;
+            color: #d9534f;
+        }
+
+        .recommendation-item .original-price {
+            font-size: 14px;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        /* 添加媒体查询以实现响应式布局 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .product {
+                flex-direction: column;
+                /* 垂直排列 */
+            }
+
+            .product-images,
+            .product-details {
+                width: 100%;
+            }
+
+            .thumbnail-images {
+                justify-content: center;
+            }
+
+            .recommendation-items {
+                flex-direction: column;
+            }
+
+            .recommendation-item {
+                width: 100%;
+            }
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="./index.html"><img src="./images/11.png" alt="Logo"></a></div>
+        <img src="./images/23.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員專區</a>
+            <a href="./Q&A.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+    
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <div class="container">
+        <div class="head">
+            <nav>
+                <a href="#">首頁</a> &gt; <a href="#">草莓控必備</a> &gt; 草莓綜合果乾水
+            </nav>
+        </div>
+        <div class="product">
+            <div class="product-images">
+                <img src="./images/index/19.png" alt="草莓綜合果乾" class="main-image" id="main-image">
+                <div class="./images/index/19.png">
+                    <img src="./images/index/19-1.png" alt="Thumbnail 1" class="thumbnail"
+                        data-full="./images/index/19.png">
+                    <img src="./images/index/20-1.png" alt="Thumbnail 2" class="thumbnail"
+                        data-full="./images/index/20.png">
+                    <img src="./images/index/21-1.png" alt="Thumbnail 3" class="thumbnail"
+                        data-full="./images/index/21.png">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1>玫瑰蜜桃茶</h1>
+                <p class="rating">★★★★★ 1 評論</p>
+                <p class="price">$150</p>
+                <p class="description">
+                    茶韻花語 玫瑰蜜桃茶<br>
+                    南投水蜜桃 x 台中玫瑰<br><br>
+                    沉浸在玫瑰蜜桃茶的香醇魅力中！茶韻花語玫瑰蜜桃茶，選用南投水蜜桃與台中玫瑰，調和出獨特的香氣與口感。每一口都是天然滋味的享受，每一滴都是滿滿的幸福滋養。<br><br>
+                    台灣花果茶，調劑身心，讓生活更健康<br>
+                    ✓ 前調:玫瑰蜜桃茶初品，清新玫瑰香與甜美蜜桃氣息交織，带来怡人的前调。<br>
+                    ✓ 中調:蜜桃味濃郁，與花香和諧融合，中调豐富多變，口感圓潤豐富，唇齒留香。<br>
+                    ✓ 後調:清甜余味與柔和花香交織，回味悠長，後调清雅持久，縈繞口腔，令人回味無窮。<br><br>
+
+                    功效<br>
+                    ✓ 美容養顏：豐富的維生素C和抗氧化劑，能夠抗氧化、延緩衰老，促進肌膚的新陳代謝，保持皮膚的健康和光澤。<br>
+
+                    ✓ 促進消化：茶飲的甜味和果香能夠刺激消化液的分泌，促進胃腸蠕動，有助於消化食物，緩解消化不良和胃部不適。<br>
+
+                    ✓ 保濕滋潤：玫瑰蜜桃茶口感清爽甜美，還含有豐富的水分，能夠補充身體所需的水分，保持水潤的肌膚。<br>
+                </p>
+                <div class="selection">
+                    <p>選擇組合內容:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            玫瑰+草莓(豐富的维生素C和抗氧化劑)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+水梨(清热潤肺、生津止渴)
+                        </label>
+                    </div>
+                    <div class="form-check02">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            玫瑰+蜜桃(舒缓壓力、美容養顏)
+                        </label>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <p>數量:</p>
+                    <div class="quantity-select">
+                        <button class="minus">-</button>
+                        <input type="text" value="1" readonly>
+                        <button class="plus">+</button>
+                    </div>
+
+                </div>
+                <button class="add-to-cart"><a href="./shopping01.html">前往結帳</a></button>
+            </div>
+        </div>
+        <div class="product-tabs">
+            <div class="tab-buttons">
+                <button class="active" data-tab="details">商品詳情</button>
+                <button data-tab="ingredients">產品成分</button>
+                <button data-tab="preparation">沖泡方式</button>
+                <button data-tab="shipping">付款與運送</button>
+                <button data-tab="evaluate">評價留言</button>
+            </div>
+            <div class="tab-content active" id="details">
+                <p>
+                    茶韻花語玫瑰蜜桃茶<br>
+                    沉浸在玫瑰蜜桃茶的香醇魅力中！茶韻花語玫瑰蜜桃茶，選用南投水蜜桃與台中玫瑰，調和出獨特的香氣與口感。每一口都是天然滋味的享受，每一滴都是滿滿的幸福滋養。
+                </p>
+            </div>
+            <div class="tab-content" id="ingredients">
+                <p>
+
+                    產品名稱：茶韻花語 玫瑰蜜桃茶，10包/盒<br>
+                    淨重：每包1.2公克<br>
+                    保存期限：6個月
+
+                    玫瑰蜜桃茶成分包括：南投水蜜桃、高雄桂圓花、台中玫瑰。<br><br>
+                    玫瑰蜜桃茶的成分主要包括：<br><br>
+
+                    玫瑰：賦予茶飲清新的花香和甜美的桃味，具有舒緩壓力的功效。<br>
+                    蜜桃：提供茶飲甜美的果香和滋潤的口感，有助於美容養顏和補水滋潤。</p>
+            </div>
+            <div class="tab-content" id="preparation">
+                <p>玫瑰蜜桃茶的沖泡方法如下：<br><br>
+
+                    將一包玫瑰蜜桃茶放入杯中。<br>
+                    沸水沖泡，溫度約80°C至90°C。<br>
+                    蓋上杯蓋，浸泡3至5分鐘，依個人口味調整時間。<br>
+                    按需加入蜂蜜或糖調味。<br>
+                    可依喜好添加冰塊或涼水製作冰桃茶。<br>
+                    攪拌均勻後即可享用。<br><br>
+                    溫馨小提醒：沖泡時間過長會導致茶味過濃，建議依個人口感調整沖泡時間。</p>
+            </div>
+            <div class="tab-content" id="shipping">
+                <p>付款與運送內容說明如下：<br><br>
+
+                    付款方式：<br>
+
+                    我們接受信用卡線上支付方式。<br>
+                    您也可以選擇貨到付款，即在收到商品後支付訂單金額。<br><br>
+                    運送方式：<br><br>
+
+                    我們提供快遞配送服務，通常在訂單確認後1至3個工作天內出貨。<br>
+                    您也可以選擇到門市自取，以便節省運費並更快收到商品。<br>
+                    部分地區可能無法提供配送服務，請您事先確認。<br><br>
+                    運費：<br><br>
+
+                    運費根據配送地址和商品重量而定，具體費用將在結算頁面顯示。<br>
+                    滿額購物可能享有免運費優惠，詳情請參考促銷活動。<br><br>
+                    退換貨政策：<br><br>
+
+                    若商品出現品質問題或運送損壞，我們將提供免費退換貨服務。<br>
+                    若您對商品不滿意，可在收到商品後的7天內申請退貨，具體退貨流程請參考我們的退換貨政策。<br>
+                    請注意：以上內容可能因地區和政策而有所不同，請以實際情況為準。</p>
+            </div>
+            <div class="tab-content" id="evaluate">
+                <h2>評價留言</h2>
+                <p>評價星等: 5<br>
+                    帳號: atnena<br>
+                    說明: 商品很棒<br>
+                    規格: 美容養顏
+                    </p>
+                    <img src="./images/index/19.png" alt="">
+            </div>
+        </div>
+        <div class="recommendations">
+            <h2>推薦商品</h2>
+            <div class="recommendation-items">
+                <div class="recommendation-item">
+                    <img src="./images/index/fruity02-1.jpg" alt="推薦商品1">
+                    <p>玫瑰檸檬茶</p>
+                    <p class="price">$150 <span class="original-price">$200</span></p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="./images/index/17.png" alt="推薦商品2">
+                    <p>洛神金桔茶</p>
+                    <p class="price">$150</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const thumbnails = document.querySelectorAll(".thumbnail");
+            const mainImage = document.getElementById("main-image");
+
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener("click", function () {
+                    const fullImage = this.getAttribute("data-full");
+                    mainImage.src = fullImage;
+                });
+            });
+
+            const tabButtons = document.querySelectorAll(".tab-buttons button");
+            const tabContents = document.querySelectorAll(".tab-content");
+
+            tabButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const tab = this.getAttribute("data-tab");
+
+                    tabButtons.forEach(btn => btn.classList.remove("active"));
+                    tabContents.forEach(content => content.classList.remove("active"));
+
+                    this.classList.add("active");
+                    document.getElementById(tab).classList.add("active");
+                });
+            });
+
+            // 处理数量选择
+            const quantityInput = document.querySelector(".quantity-select input");
+            const quantityPlus = document.querySelector(".quantity-select .plus");
+            const quantityMinus = document.querySelector(".quantity-select .minus");
+
+            quantityPlus.addEventListener("click", function () {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            });
+
+            quantityMinus.addEventListener("click", function () {
+                if (quantityInput.value > 1) {
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                }
+            });
+        });
+
+    </script>
+
+   <!-- footer -->
+   <div class="hero">
+    <div class="hero-content">
+        <h2>每一件食材，皆是滴釀的回甘</h2>
+        <p>我們將聽取更多不同的回聲，持續回饋產品的提升<br>
+            若有想要詢問問題，歡迎點擊下方按鈕聯繫茶韻花語</p>
+        <div class="buttons">
+            <a href="#" class="btnn">聯絡茶韻花語</a>
+            <a href="#" class="btnn">LINE 線上客服</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+        </div>
+        <div class="footer-section">
+            <h3>關於茶韻花語</h3>
+            <ul>
+                <li><a href="#">品牌故事</a></li>
+                <li><a href="#">在地經營體驗</a></li>
+                <li><a href="#">永續經營的堅持</a></li>
+                <li><a href="#">符合認證安心的好品質</a></li>
+                <li><a href="#">服務條款</a></li>
+                <li><a href="#">退換政策</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>客戶服務</h3>
+            <ul>
+                <li><a href="#">會員服務</a></li>
+                <li><a href="#">商品配送</a></li>
+                <li><a href="#">退換貨服務</a></li>
+                <li><a href="#">常見問題</a></li>
+                <li><a href="#">聯絡我們</a></li>
+                <li><a href="#">加入會員好康</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>茶韻花語生活集</h3>
+            <ul>
+                <li><a href="#">日常新鮮集</a></li>
+                <li><a href="#">飲用心得觀</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/"><img src="./images/25.png" alt="Facebook"></a></li>
+            <li><a href="https://www.instagram.com/"><img src="./images/26.png" alt="Instagram"></a></li>
+            <li><a href="https://www.youtube.com/"><img src="./images/27.png" alt="YouTube"></a></li>
+        </ul>
+        <p>採用純天然花果茶，感受茶飲的好味道。</p>
+    </div>
+</footer>
+<!-- footer -->
+</body>
+
+</html>

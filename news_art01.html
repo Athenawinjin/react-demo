@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最新消息</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f5f1;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 100px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-section {
+            display: flex;
+            background-color: #f9f5f1;
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-text {
+            flex: 1;
+            background-color: #d8a49e;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-text h1 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .hero-text a {
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #a06a6b;
+            width: 120px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            border-radius: 10px;
+        }
+
+        .hero-text a:hover {
+            background-color: #f0d7d7;
+            color: #a06a6b;
+        }
+
+        .content-section {
+            padding: 60px 20px;
+            background-color: #f9f5f1;
+            text-align: left;
+        }
+
+        .content-section h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .background-section {
+            width: 100%;
+            background: linear-gradient(-20deg, #d8a49e 50%, #9A6C6D 50%);
+            padding: 60px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .grid-section {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .grid-item {
+            text-align: center;
+            width: 30%;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .grid-item p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .grid-item h3 {
+            font-size: 1.4em;
+            color: #fff;
+        }
+
+        .new-section {
+            background-color: #f9f5f1;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .new-section .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to top, #FFF, #F3B6B6);
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .new-section .card img {
+            width: 40%;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .new-section .card .card-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .new-section .card .card-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .new-section .card .card-content p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .new-section .card .card-content a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #a06a6b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .new-section .card .card-content a:hover {
+            background-color: #c07676;
+        }
+
+        .image-row-section {
+            background-color: #f9f5f1;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-item {
+            width: 23%;
+            text-align: center;
+        }
+
+        .image-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .image-item h3 {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .image-item p {
+            margin-top: 5px;
+            color: #666;
+        }
+
+        .pagination {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f5f1;
+        }
+
+        .pagination a {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #d8a49e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 1199px) {
+            .hero-section {
+                flex-direction: column;
+            }
+
+            .hero-text {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 1.5em;
+            }
+
+            .hero-text p {
+                font-size: 0.9em;
+            }
+
+            .grid-section {
+                flex-wrap: wrap;
+            }
+
+            .grid-item {
+                width: 48%;
+                margin-bottom: 20px;
+            }
+
+            .grid-item:nth-child(2) {
+                margin-left: 4%;
+            }
+
+            .new-section {
+                padding: 40px 0;
+            }
+
+            .new-section .card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .new-section .card img {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .content-section h2 {
+                font-size: 1.4em;
+            }
+
+            .content-section p {
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+
+            .background-section {
+                padding: 40px 0;
+                background: linear-gradient(to top, #d8a49e, #f9f5f1);
+                display: block;
+            }
+
+            .grid-section {
+                flex-direction: column;
+                padding: 0 10px;
+            }
+
+            .grid-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .grid-item p {
+                font-size: 1em;
+            }
+
+            .grid-item h3 {
+                font-size: 1.2em;
+            }
+
+            .new-section {
+                padding: 20px 0;
+            }
+
+            .new-section .card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .new-section .card img {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .image-row {
+                flex-direction: column;
+            }
+
+            .image-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .image-item img {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* 文章列表 */
+        .cont {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            height: 50%;
+        }
+
+        .image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(201, 143, 143, 0.6);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .image:hover .overlay {
+            opacity: 1;
+        }
+
+        .image-1 {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+
+        .image-2 {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+
+        .image-3 {
+            grid-column: 3 / 5;
+            grid-row: 1 / 3;
+        }
+
+        .image-4 {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+
+        .image-5 {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+
+        .image-6 {
+            grid-column: 1 / 3;
+            grid-row: 3 / 4;
+        }
+
+        .image-7 {
+            grid-column: 3 / 4;
+            grid-row: 3 / 4;
+        }
+
+        .image-8 {
+            grid-column: 4 / 5;
+            grid-row: 3 / 4;
+        }
+
+        /* Keyframes for the zoom animation */
+        @keyframes zoom {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Applying the zoom animation to each image */
+        .image-1 img {
+            animation: zoom 16s ease-in-out infinite;
+        }
+
+        .image-2 img {
+            animation: zoom 16s ease-in-out infinite 2s;
+        }
+
+        .image-3 img {
+            animation: zoom 16s ease-in-out infinite 4s;
+        }
+
+        .image-4 img {
+            animation: zoom 16s ease-in-out infinite 6s;
+        }
+
+        .image-5 img {
+            animation: zoom 16s ease-in-out infinite 8s;
+        }
+
+        .image-6 img {
+            animation: zoom 16s ease-in-out infinite 10s;
+        }
+
+        .image-7 img {
+            animation: zoom 16s ease-in-out infinite 12s;
+        }
+
+        .image-8 img {
+            animation: zoom 16s ease-in-out infinite 14s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="./index.html"><img src="./images/11.png" alt="Logo"></a></div>
+        <img src="./images/23.png" alt="Menu" class="menu-icon" onclick="openLightboxMenu()">
+        <div class="header-items">
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員專區</a>
+            <a href="./Q&A.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+        <div class="cart">
+            <img src="./images/10.png" alt="Cart Icon">
+            <div class="cart-count">0</div>
+        </div>
+    </header>
+
+    <div class="lightbox-menu" id="lightboxMenu">
+        <div class="lightbox-menu-content">
+            <span class="close-btnn" onclick="closeLightboxMenu()" style="top: 5px; right: 5px;">&times;</span>
+            <a href="./product.html">商品列表</a>
+            <a href="./account-loge.html">會員招募</a>
+            <a href="./qa.html">常見Q&A</a>
+            <a href="./news.html">最新消息</a>
+        </div>
+    </div>
+
+    <script>
+        function openLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'block';
+        }
+
+        function closeLightboxMenu() {
+            const lightboxMenu = document.getElementById('lightboxMenu');
+            lightboxMenu.style.display = 'none';
+        }
+    </script>
+
+    <div class="container">
+        <div class="hero-section">
+            <div class="hero-image">
+                <img src="./images/index/19.png" alt="Hero Image">
+            </div>
+            <div class="hero-text">
+                <h1>熟成玫瑰蜜桃茶</h1>
+                <p>玫瑰蜜桃茶是一款融合了天然玫瑰和新鮮蜜桃的特色茶飲。每一口都散發出玫瑰的清香和蜜桃的甜美，仿佛置身于春日的花海中。<br><br>
+                    選用優質的玫瑰和蜜桃，配以細緻的茶葉，帶來清新宜人的口感和獨特的香氣。<br><br>
+                    玫瑰富含花青素，有助於美容養顏，蜜桃則富含維生素C和纖維，有益於健康。無論是炎炎夏日的冰鎮享受，還是寒冷冬日的溫暖一杯，<br><br>
+                    玫瑰蜜桃茶都是一款能讓人心曠神怡的完美選擇。來一杯玫瑰蜜桃茶，感受自然的甜美與芳香，讓您的每一天都充滿愉悅。</p>
+                <a href="./product_page01.html">了解詳情</a>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>玫瑰介紹與烘乾製成說明</h2>
+            <img src="./images/product/01.jpg" alt="">
+            <p>玫瑰，是春季盛開的美麗花朵，以其淡雅的粉紅色和芬芳的香氣深受喜愛。玫瑰不僅觀賞價值高，還有美容養顏的功效。<br>
+                玫瑰富含多種營養成分，包括花青素、維生素和礦物質，對皮膚具有保濕和抗氧化作用，常被用於製作茶飲和美容產品。<br><br>
+
+                玫瑰的烘乾製成過程相當講究。首先，選取開放適中的新鮮玫瑰，然後經過細心挑選，去除雜質。<br>
+                接著，將玫瑰均勻鋪在乾燥網上，置於陰涼通風處自然晾乾，避免陽光直射，以保持花朵的色澤和營養成分。<br>
+                晾乾後，再進行低溫烘乾處理，確保玫瑰徹底乾燥且不變色。<br>
+                最後，密封保存，以確保玫瑰的香氣和營養成分得以長時間保持。<br>
+                這樣製成的乾燥玫瑰，不僅方便儲存，還能在任何時候享用其獨特的風味和功效。</p>
+        </div>
+
+        <div class="background-section">
+            <div class="grid-section">
+                <div class="grid-item smoove" data-move-x="-500px" data-rotate="90deg">
+                    <img src="./images/product/04.jpg" alt="Handicraft Image">
+                    <p>新鮮熟成玫瑰，帶出淡雅清香</p>
+                    <h3>玫瑰茶</h3>
+                </div>
+                <div class="grid-item smoove" data-move-x="-250px" data-move-y="200px" data-rotate="45deg">
+                    <img src="./images/product/03.jpg" alt="Gardening Image">
+                    <p>清冶玫瑰搭載濃郁奶香</p>
+                    <h3>玫瑰奶茶</h3>
+                </div>
+                <div class="grid-item smoove" data-move-x="500px" data-rotate="-90deg">
+                    <img src="./images/product/02.jpg" alt="Mindfulness Image">
+                    <p>醞釀玫瑰的香搭配檸檬酸甜</p>
+                    <h3>玫瑰檸檬茶</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="new-section">
+            <div class="card smoove">
+                <img src="./images/product/05.jpg" alt="Attend an online event">
+                <div class="card-content">
+                    <h3>美容養顏</h3>
+                    <p>玫瑰含有豐富的花青素和維生素，有助於抗氧化，延緩衰老，保持肌膚年輕。</p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+            <div class="card smoove">
+                <img src="./images/product/06.jpg" alt="Take a joy course">
+                <div class="card-content">
+                    <h3>調節情緒</h3>
+                    <p>玫瑰的香氣能舒緩壓力和緊張情緒，有助於放鬆身心，改善睡眠質量。</p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+            <div class="card smoove">
+                <img src="./images/product/07.jpg" alt="Join a mentorship circle">
+                <div class="card-content">
+                    <h3>清熱解毒</h3>
+                    <p>具有清熱解毒的作用，適合在炎熱的季節飲用，有助於去除體內的毒素。</p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-row-section">
+            <div class="image-row">
+                <div class="image-item smoove" data-move-x="-200px" data-move-y="200px" >
+                    <img src="./images/product/08.jpg" alt="Image 1">
+                    <h3>製成01</h3>
+                    <p>將篩選花材置於茶壺或茶杯中</p>
+                </div>
+                <div class="image-item smoove" data-move-x="-200px" data-move-y="200px" >
+                    <img src="./images/product/09.jpg" alt="Image 2">
+                    <h3>製成02</h3>
+                    <p>倒入熱水，溫度約攝氏90度</p>
+                </div>
+                <div class="image-item smoove"  data-move-x="200px" data-move-y="200px">
+                    <img src="./images/product/10.jpg" alt="Image 3">
+                    <h3>製成03</h3>
+                    <p>蓋上茶壺或茶杯蓋，浸泡約5至8分鐘</p>
+                </div>
+                <div class="image-item smoove"  data-move-x="200px" data-move-y="200px">
+                    <img src="./images/product/11.jpg" alt="Image 4">
+                    <h3>製成04</h3>
+                    <p>倒入杯中即可飲用</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文章列表 -->
+        <div class="cont">
+            <div class="image image-1 smoove">
+                <img src="./images/index/19.png" alt="Image 1">
+                <div class="overlay"><a href="">最新消息文章:玫瑰蜜桃茶</a></div>
+            </div>
+            <div class="image image-2 smoove">
+                <img src="./images/area/02.jpg" alt="Image 2">
+                <div class="overlay"><a href="">最新消息文章:洛神草莓檸檬茶</a></div>
+            </div>
+            <div class="image image-3 smoove">
+                <img src="./images/area/12.png" alt="Image 3">
+                <div class="overlay"><a href="">最新消息文章:金盞菊茶</a></div>
+            </div>
+            <div class="image image-4 smoove">
+                <img src="./images/area/04.jpg" alt="Image 4">
+                <div class="overlay"><a href="">最新消息文章:洋甘菊茶</a></div>
+            </div>
+            <div class="image image-5 smoove">
+                <img src="./images/area/05.jpg" alt="Image 5">
+                <div class="overlay"><a href="">最新消息文章:洛神花茶</a></div>
+            </div>
+            <div class="image image-6 smoove">
+                <img src="./images/area/14.png" alt="Image 6">
+                <div class="overlay"><a href="">最新消息文章:玫瑰花茶</a></div>
+            </div>
+            <div class="image image-7 smoove">
+                <img src="./images/area/07.png" alt="Image 7">
+                <div class="overlay"><a href="">最新消息文章:紅巧梅花茶</a></div>
+            </div>
+            <div class="image image-8 smoove">
+                <img src="./images/index/12.png" alt="Image 8">
+                <div class="overlay"><a href="">最新消息文章:櫻花花茶</a></div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="#">&laquo; 上一頁</a>
+            <a href="./news.html">回列表</a>
+            <a href="#">下一頁 &raquo;</a>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="hero">
+        <div class="hero-content">
+            <h2>每一件食材，皆是滴釀的回甘</h2>
+            <p>我們將聽取更多不同的回聲，持續回饋產品的提升<br>
+                若有想要詢問問題，歡迎點擊下方按鈕聯繫茶韻花語</p>
+            <div class="buttons">
+                <a href="#" class="btnn">聯絡茶韻花語</a>
+                <a href="#" class="btnn">LINE 線上客服</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="./images/11.png" alt="Tea Harmony Flower Tea Logo">
+            </div>
+            <div class="footer-section">
+                <h3>關於茶韻花語</h3>
+                <ul>
+                    <li><a href="#">品牌故事</a></li>
+                    <li><a href="#">在地經營體驗</a></li>
+                    <li><a href="#">永續經營的堅持</a></li>
+                    <li><a href="#">符合認證安心的好品質</a></li>
+                    <li><a href="#">服務條款</a></li>
+                    <li><a href="#">退換政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>客戶服務</h3>
+                <ul>
+                    <li><a href="#">會員服務</a></li>
+                    <li><a href="#">商品配送</a></li>
+                    <li><a href="#">退換貨服務</a></li>
+                    <li><a href="#">常見問題</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                    <li><a href="#">加入會員好康</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>茶韻花語生活集</h3>
+                <ul>
+                    <li><a href="#">日常新鮮集</a></li>
+                    <li><a href="#">飲用心得觀</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul class="social-icons">
+                <li><a href="https://www.facebook.com/"><img src="./images/25.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/"><img src="./images/26.png" alt="Instagram"></a></li>
+                <li><a href="https://www.youtube.com/"><img src="./images/27.png" alt="YouTube"></a></li>
+            </ul>
+            <p>採用純天然花果茶，感受茶飲的好味道。</p>
+        </div>
+    </footer>
+    <!-- footer -->
+
+        <!-- 啟用jquery原生碼 -->
+        <script src="js/jquery-3.7.1.min.js"></script>
+        <!-- jquery smoove套件CDN-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.10/jquery.smoove.min.js"></script>
+    
+        <script>
+                // jquery smoove 一定要單獨寫在外面
+                $('.smoove').smoove({
+            offset: '30%'
+          });
+        </script>
+</body>
+
+</html>
